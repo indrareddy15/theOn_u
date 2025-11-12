@@ -50,8 +50,14 @@ export default function Home() {
 
         {/* Drifting Light - Animated Gold Glow */}
         <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute -top-1/2 -right-1/4 w-96 h-96 bg-gradient-radial from-yellow-200 to-transparent rounded-full mix-blend-lighten filter blur-3xl opacity-40 animate-drift"></div>
-          <div className="absolute -bottom-1/2 -left-1/4 w-80 h-80 bg-gradient-radial from-amber-200 to-transparent rounded-full mix-blend-lighten filter blur-3xl opacity-30 animate-drift-slow"></div>
+          <div
+            className="absolute -top-1/2 -right-1/4 w-96 h-96 rounded-full mix-blend-lighten filter blur-3xl opacity-40 animate-drift"
+            style={{ background: 'radial-gradient(circle, rgba(234, 179, 8, 0.4) 0%, transparent 70%)' }}
+          ></div>
+          <div
+            className="absolute -bottom-1/2 -left-1/4 w-80 h-80 rounded-full mix-blend-lighten filter blur-3xl opacity-30 animate-drift-slow"
+            style={{ background: 'radial-gradient(circle, rgba(217, 119, 6, 0.3) 0%, transparent 70%)' }}
+          ></div>
         </div>
 
         {/* Parallax Depth Layer - Subtle Moving Background */}
