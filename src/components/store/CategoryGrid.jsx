@@ -15,18 +15,19 @@ export default function CategoryGrid({ categories }) {
             {categories.map((category, index) => (
                 <div
                     key={category.id}
-                    className={`group relative overflow-hidden rounded-2xl cursor-pointer ${index === 0 ? 'md:col-span-2 md:row-span-2' : ''
+                    className={`group relative overflow-hidden rounded-2xl cursor-pointer shadow-sm hover:shadow-md transition-all duration-300 ${index === 0 ? 'md:col-span-2 md:row-span-2' : ''
                         }`}
                     onClick={() => navigate(createPageUrl(`Shop?category=${category.slug}`))}
                 >
-                    <div className={`${index === 0 ? 'h-full min-h-[400px]' : 'h-64'} relative`}>
+                    <div className={`${index === 0 ? 'h-full min-h-[420px]' : 'h-64'} relative`}>
                         <img
                             src={getCategoryImage(category)}
                             alt={category.name}
-                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                            className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                            loading="lazy"
                         />
 
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent group-hover:from-black/90 group-hover:via-black/50 transition-all duration-300" />
 
                         <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
                             <h3 className={`font-bold mb-2 capitalize ${index === 0 ? 'text-3xl md:text-4xl' : 'text-xl'
@@ -34,13 +35,13 @@ export default function CategoryGrid({ categories }) {
                                 {category.name}
                             </h3>
                             {category.description && (
-                                <p className="text-white/80 text-sm mb-3 line-clamp-2">
+                                <p className="text-white/80 text-sm mb-4 line-clamp-2">
                                     {category.description}
                                 </p>
                             )}
-                            <div className="flex items-center gap-2 text-sm font-medium group-hover:gap-3 transition-all">
+                            <div className="inline-flex items-center gap-2 text-sm font-semibold bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full group-hover:bg-white/20 transition-all duration-300">
                                 <span>Shop Now</span>
-                                <ArrowRight className="w-4 h-4" />
+                                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                             </div>
                         </div>
                     </div>
