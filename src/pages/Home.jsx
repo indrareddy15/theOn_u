@@ -168,14 +168,14 @@ export default function Home() {
         <section className="py-20 md:py-28 bg-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-16 animate-fadeIn">
-              <div className="flex items-center justify-center gap-2 mb-2">
+              <div className="flex items-center justify-center gap-2 mb-3">
                 <Quote className="w-5 h-5 text-gray-600" />
-                <span className="text-sm font-medium text-gray-600">Our Community</span>
+                <span className="text-sm font-semibold text-gray-600">Our Community</span>
               </div>
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-2">
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4 leading-tight">
                 Real Stories. Real Style.
               </h2>
-              <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+              <p className="text-base md:text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed">
                 Our community speaks for our quality and design.
               </p>
             </div>
