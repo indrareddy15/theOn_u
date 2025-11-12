@@ -205,43 +205,47 @@ export default function Home() {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {customerReviews.slice(0, 6).map(review => (
-                <Card key={review.id} className="hover:shadow-md transition-all duration-300 border border-gray-100 bg-white/50 backdrop-blur-sm hover:bg-white/80 animate-fadeIn">
-                  <CardContent className="pt-6 p-6">
-                    <div className="flex items-start justify-between mb-4">
-                      <div className="flex items-center gap-3">
+              {customerReviews.slice(0, 6).map((review, idx) => (
+                <Card
+                  key={review.id}
+                  className="hover:shadow-premium-lg transition-all duration-500 border-2 border-gray-200 bg-white hover:bg-gradient-to-br hover:from-white hover:to-gray-50 animate-fadeIn hover-scale-105 group"
+                  style={{ animationDelay: `${idx * 0.1}s` }}
+                >
+                  <CardContent className="pt-8 p-8">
+                    <div className="flex items-start justify-between mb-6">
+                      <div className="flex items-center gap-4">
                         {review.customer_image ? (
                           <img
                             src={review.customer_image}
                             alt={review.customer_name}
-                            className="w-12 h-12 rounded-full object-cover ring-2 ring-gray-100"
+                            className="w-14 h-14 rounded-full object-cover ring-3 ring-yellow-200 group-hover:ring-yellow-300 transition-all"
                           />
                         ) : (
-                          <div className="w-12 h-12 rounded-full bg-gradient-to-br from-gray-200 to-gray-300 flex items-center justify-center ring-2 ring-gray-100">
-                            <span className="text-gray-600 font-bold text-lg">
+                          <div className="w-14 h-14 rounded-full bg-gradient-to-br from-gray-900 to-gray-700 flex items-center justify-center ring-3 ring-yellow-200 group-hover:ring-yellow-300 transition-all">
+                            <span className="text-white font-bold text-lg">
                               {review.customer_name.charAt(0)}
                             </span>
                           </div>
                         )}
                         <div>
-                          <h4 className="font-semibold text-gray-900">{review.customer_name}</h4>
+                          <h4 className="font-bold text-gray-900 text-lg">{review.customer_name}</h4>
                           {review.location && (
-                            <p className="text-xs text-gray-500">{review.location}</p>
+                            <p className="text-sm text-gray-500 font-medium">{review.location}</p>
                           )}
                         </div>
                       </div>
-                      <div className="flex gap-0.5">
+                      <div className="flex gap-1 bg-yellow-100 px-3 py-1 rounded-lg">
                         {[...Array(5)].map((_, i) => (
                           <Star
                             key={i}
                             className={`w-4 h-4 ${
-                              i < review.rating ? 'fill-yellow-400 text-yellow-400' : 'text-gray-200'
+                              i < review.rating ? 'fill-yellow-500 text-yellow-500' : 'text-gray-300'
                             }`}
                           />
                         ))}
                       </div>
                     </div>
-                    <p className="text-gray-600 text-sm leading-relaxed italic">"{review.review_text}"</p>
+                    <p className="text-gray-700 text-base leading-relaxed font-medium italic">"{review.review_text}"</p>
                   </CardContent>
                 </Card>
               ))}
