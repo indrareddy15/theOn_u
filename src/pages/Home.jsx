@@ -307,27 +307,46 @@ export default function Home() {
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="relative py-24 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 overflow-hidden">
+      {/* CTA Section - Premium Enhanced */}
+      <section className="relative py-32 bg-gradient-to-br from-gray-900 via-gray-800 to-black overflow-hidden">
+        {/* Enhanced Background Elements */}
         <div className="absolute inset-0">
-          <div className="absolute top-1/2 left-1/4 w-80 h-80 bg-yellow-400/10 rounded-full mix-blend-multiply filter blur-3xl opacity-20"></div>
-          <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-purple-400/10 rounded-full mix-blend-multiply filter blur-3xl opacity-20"></div>
+          <div className="absolute top-1/2 left-1/4 w-96 h-96 bg-yellow-400/20 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-float-up"></div>
+          <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-purple-500/20 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-float" style={{ animationDelay: '1s' }}></div>
+          <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
         </div>
-        <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center animate-fadeIn">
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 leading-tight">
-            Join the Style Revolution
+
+        <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center animate-fadeInUp">
+          <div className="inline-block mb-6">
+            <span className="text-sm font-bold text-yellow-400 uppercase tracking-widest">Limited Time Offer</span>
+          </div>
+
+          <h2 className="text-5xl md:text-6xl font-black text-white mb-8 leading-tight">
+            Join the Style<br className="hidden md:block" /> Revolution
           </h2>
-          <p className="text-base md:text-lg text-gray-200 mb-10 max-w-2xl mx-auto leading-relaxed font-medium">
+
+          <p className="text-xl md:text-2xl text-gray-200 mb-12 max-w-2xl mx-auto leading-relaxed font-semibold">
             Sign up for early access and exclusive drops.
           </p>
-          <Button
-            size="lg"
-            className="bg-white text-gray-900 hover:bg-gray-100 shadow-lg hover:shadow-xl transition-all duration-300 rounded-lg group font-semibold"
-            onClick={() => navigate(createPageUrl('Shop'))}
-          >
-            Shop the Collection
-            <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
-          </Button>
+
+          <div className="flex flex-col sm:flex-row justify-center gap-4">
+            <Button
+              size="lg"
+              className="bg-white text-gray-900 hover:bg-yellow-100 shadow-premium hover:shadow-premium-lg transition-all duration-300 rounded-xl group font-bold text-base px-10"
+              onClick={() => navigate(createPageUrl('Shop'))}
+            >
+              <span>Shop the Collection</span>
+              <ArrowRight className="ml-3 w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
+            </Button>
+            <Button
+              size="lg"
+              variant="outline"
+              className="border-2 border-white text-white hover:bg-white/10 font-bold transition-all duration-300 rounded-xl px-10"
+              onClick={() => navigate(createPageUrl('Shop'))}
+            >
+              Learn More
+            </Button>
+          </div>
         </div>
       </section>
 
