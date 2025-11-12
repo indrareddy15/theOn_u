@@ -15,33 +15,34 @@ export default function CategoryGrid({ categories }) {
             {categories.map((category, index) => (
                 <div
                     key={category.id}
-                    className={`group relative overflow-hidden rounded-2xl cursor-pointer shadow-sm hover:shadow-md transition-all duration-300 ${index === 0 ? 'md:col-span-2 md:row-span-2' : ''
-                        }`}
+                    className={`group relative overflow-hidden rounded-3xl cursor-pointer shadow-premium hover:shadow-premium-lg transition-all duration-500 ${index === 0 ? 'md:col-span-2 md:row-span-2' : ''
+                        } animate-fadeIn`}
                     onClick={() => navigate(createPageUrl(`Shop?category=${category.slug}`))}
+                    style={{ animationDelay: `${index * 0.1}s` }}
                 >
-                    <div className={`${index === 0 ? 'h-full min-h-[420px]' : 'h-64'} relative`}>
+                    <div className={`${index === 0 ? 'h-full min-h-[450px]' : 'h-72'} relative`}>
                         <img
                             src={getCategoryImage(category)}
                             alt={category.name}
-                            className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                            className="w-full h-full object-cover group-hover:scale-120 transition-transform duration-700"
                             loading="lazy"
                         />
 
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent group-hover:from-black/90 group-hover:via-black/50 transition-all duration-300" />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/45 to-transparent group-hover:from-black/95 group-hover:via-black/60 transition-all duration-500" />
 
-                        <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
-                            <h3 className={`font-bold mb-2 capitalize ${index === 0 ? 'text-3xl md:text-4xl' : 'text-xl'
-                                }`}>
+                        <div className="absolute bottom-0 left-0 right-0 p-8 text-white">
+                            <h3 className={`font-black mb-3 capitalize ${index === 0 ? 'text-4xl md:text-5xl' : 'text-2xl'
+                                } transition-all duration-300`}>
                                 {category.name}
                             </h3>
                             {category.description && (
-                                <p className="text-white/80 text-sm mb-4 line-clamp-2">
+                                <p className="text-white/85 text-base mb-5 line-clamp-2 font-medium">
                                     {category.description}
                                 </p>
                             )}
-                            <div className="inline-flex items-center gap-2 text-sm font-semibold bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full group-hover:bg-white/20 transition-all duration-300">
+                            <div className="inline-flex items-center gap-3 text-base font-bold bg-white/20 backdrop-blur-md px-6 py-3 rounded-full group-hover:bg-white/30 group-hover:gap-4 transition-all duration-300 shadow-premium">
                                 <span>Shop Now</span>
-                                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
                             </div>
                         </div>
                     </div>
