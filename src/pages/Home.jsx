@@ -254,20 +254,25 @@ export default function Home() {
         </section>
       )}
 
-      {/* New Arrivals */}
-      <section className="py-20 md:py-28 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 gap-8 animate-fadeIn">
+      {/* New Arrivals - Enhanced */}
+      <section className="py-24 md:py-32 bg-gradient-to-b from-white to-gray-50 relative overflow-hidden">
+        {/* Decorative elements */}
+        <div className="absolute top-1/4 right-0 w-96 h-96 bg-green-100/30 rounded-full blur-3xl -mr-48"></div>
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+          <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-20 gap-8 animate-fadeIn">
             <div className="flex-1">
-              <div className="flex items-center gap-2 mb-3">
-                <TrendingUp className="w-5 h-5 text-green-500" />
-                <span className="text-sm font-semibold text-gray-600">Fresh Releases</span>
+              <div className="flex items-center gap-3 mb-4">
+                <div className="p-2 bg-green-100 rounded-lg">
+                  <TrendingUp className="w-5 h-5 text-green-600" />
+                </div>
+                <span className="text-sm font-bold text-gray-600 uppercase tracking-widest">New Releases</span>
               </div>
               <div>
-                <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-3 leading-tight">
+                <h2 className="text-4xl md:text-5xl font-black text-gray-900 mb-4 leading-tight">
                   Just Dropped
                 </h2>
-                <p className="text-base md:text-lg text-gray-600 max-w-2xl leading-relaxed">
+                <p className="text-lg md:text-xl text-gray-600 max-w-3xl leading-relaxed font-medium">
                   Be the first to wear what's next in fashion.
                 </p>
               </div>
@@ -275,10 +280,10 @@ export default function Home() {
             <Button
               variant="outline"
               onClick={() => navigate(createPageUrl('Shop'))}
-              className="hidden md:inline-flex whitespace-nowrap"
+              className="hidden md:inline-flex whitespace-nowrap border-2 border-gray-900 text-gray-900 font-bold hover:shadow-premium transition-all duration-300 rounded-xl px-8"
             >
               View All
-              <ArrowRight className="ml-2 w-4 h-4" />
+              <ArrowRight className="ml-2 w-5 h-5" />
             </Button>
           </div>
           
