@@ -119,24 +119,24 @@ export default function Home() {
       <section className="py-20 md:py-28 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 gap-8 animate-fadeIn">
-            <div>
-              <div className="flex items-center gap-2 mb-2">
+            <div className="flex-1">
+              <div className="flex items-center gap-2 mb-3">
                 <Star className="w-5 h-5 text-yellow-500 fill-yellow-500" />
-                <span className="text-sm font-medium text-gray-600">Curated Selection</span>
+                <span className="text-sm font-semibold text-gray-600">Curated Selection</span>
               </div>
               <div>
-                <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-2">
+                <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-3 leading-tight">
                   Editor's Picks for You
                 </h2>
-                <p className="text-lg text-gray-600">
+                <p className="text-base md:text-lg text-gray-600 max-w-2xl leading-relaxed">
                   Elevate your wardrobe with this season's exclusive pieces.
                 </p>
               </div>
             </div>
-            <Button 
+            <Button
               variant="outline"
               onClick={() => navigate(createPageUrl('Shop'))}
-              className="hidden md:flex"
+              className="hidden md:inline-flex whitespace-nowrap"
             >
               View All
               <ArrowRight className="ml-2 w-4 h-4" />
@@ -230,24 +230,24 @@ export default function Home() {
       <section className="py-20 md:py-28 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 gap-8 animate-fadeIn">
-            <div>
-              <div className="flex items-center gap-2 mb-2">
+            <div className="flex-1">
+              <div className="flex items-center gap-2 mb-3">
                 <TrendingUp className="w-5 h-5 text-green-500" />
-                <span className="text-sm font-medium text-gray-600">Fresh Releases</span>
+                <span className="text-sm font-semibold text-gray-600">Fresh Releases</span>
               </div>
               <div>
-                <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-2">
+                <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-3 leading-tight">
                   Just Dropped
                 </h2>
-                <p className="text-lg text-gray-600">
+                <p className="text-base md:text-lg text-gray-600 max-w-2xl leading-relaxed">
                   Be the first to wear what's next in fashion.
                 </p>
               </div>
             </div>
-            <Button 
+            <Button
               variant="outline"
               onClick={() => navigate(createPageUrl('Shop'))}
-              className="hidden md:flex"
+              className="hidden md:inline-flex whitespace-nowrap"
             >
               View All
               <ArrowRight className="ml-2 w-4 h-4" />
