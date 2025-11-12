@@ -1,0 +1,167 @@
+{
+    "name": "Product",
+    "type": "object",
+    "properties": {
+        "product_id": {
+            "type": "string",
+            "description": "Unique product identifier"
+        },
+        "title": {
+            "type": "string",
+            "description": "Product title"
+        },
+        "description": {
+            "type": "string",
+            "description": "Product description"
+        },
+        "specification": {
+            "type": "string",
+            "description": "Product specifications"
+        },
+        "material": {
+            "type": "string",
+            "description": "Material composition"
+        },
+        "care_instructions": {
+            "type": "string",
+            "description": "Care and washing instructions"
+        },
+        "gender": {
+            "type": "string",
+            "enum": [
+                "men",
+                "women",
+                "unisex",
+                "kids"
+            ],
+            "description": "Target gender"
+        },
+        "category": {
+            "type": "string",
+            "description": "Main category"
+        },
+        "sub_category": {
+            "type": "string",
+            "description": "Subcategory"
+        },
+        "price": {
+            "type": "number",
+            "description": "Regular price (MRP)"
+        },
+        "sale_price": {
+            "type": "number",
+            "description": "Discounted price"
+        },
+        "images": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            },
+            "description": "Product images URLs"
+        },
+        "colors": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "code": {
+                        "type": "string"
+                    },
+                    "images": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    }
+                }
+            },
+            "description": "Available colors"
+        },
+        "sizes": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "size": {
+                        "type": "string"
+                    },
+                    "stock": {
+                        "type": "number"
+                    }
+                }
+            },
+            "description": "Size and stock information"
+        },
+        "total_stock": {
+            "type": "number",
+            "default": 0,
+            "description": "Total available stock"
+        },
+        "average_rating": {
+            "type": "number",
+            "default": 0,
+            "description": "Average customer rating"
+        },
+        "review_count": {
+            "type": "number",
+            "default": 0,
+            "description": "Number of reviews"
+        },
+        "tags": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            },
+            "description": "Product tags"
+        },
+        "sku": {
+            "type": "string",
+            "description": "Stock Keeping Unit"
+        },
+        "hsn": {
+            "type": "string",
+            "description": "HSN code for taxation"
+        },
+        "gst": {
+            "type": "number",
+            "description": "GST percentage"
+        },
+        "weight": {
+            "type": "number",
+            "description": "Product weight in kg"
+        },
+        "dimensions": {
+            "type": "object",
+            "properties": {
+                "length": {
+                    "type": "number"
+                },
+                "width": {
+                    "type": "number"
+                },
+                "height": {
+                    "type": "number"
+                }
+            },
+            "description": "Product dimensions in cm"
+        },
+        "is_featured": {
+            "type": "boolean",
+            "default": false,
+            "description": "Featured product flag"
+        },
+        "is_active": {
+            "type": "boolean",
+            "default": true,
+            "description": "Product active status"
+        }
+    },
+    "required": [
+        "title",
+        "price",
+        "category"
+    ]
+}

@@ -1,0 +1,192 @@
+{
+    "name": "Order",
+    "type": "object",
+    "properties": {
+        "order_id": {
+            "type": "string",
+            "description": "Unique order identifier"
+        },
+        "user_email": {
+            "type": "string",
+            "description": "Customer email"
+        },
+        "order_items": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "product_id": {
+                        "type": "string"
+                    },
+                    "product_title": {
+                        "type": "string"
+                    },
+                    "product_image": {
+                        "type": "string"
+                    },
+                    "quantity": {
+                        "type": "number"
+                    },
+                    "size": {
+                        "type": "string"
+                    },
+                    "color": {
+                        "type": "string"
+                    },
+                    "price": {
+                        "type": "number"
+                    },
+                    "subtotal": {
+                        "type": "number"
+                    }
+                }
+            },
+            "description": "Items in the order"
+        },
+        "shipping_address": {
+            "type": "object",
+            "properties": {
+                "full_name": {
+                    "type": "string"
+                },
+                "phone": {
+                    "type": "string"
+                },
+                "address_line1": {
+                    "type": "string"
+                },
+                "address_line2": {
+                    "type": "string"
+                },
+                "city": {
+                    "type": "string"
+                },
+                "state": {
+                    "type": "string"
+                },
+                "postal_code": {
+                    "type": "string"
+                },
+                "country": {
+                    "type": "string"
+                }
+            },
+            "description": "Delivery address"
+        },
+        "subtotal": {
+            "type": "number",
+            "description": "Order subtotal"
+        },
+        "shipping_fee": {
+            "type": "number",
+            "default": 0,
+            "description": "Shipping charges"
+        },
+        "tax": {
+            "type": "number",
+            "default": 0,
+            "description": "Tax amount"
+        },
+        "discount": {
+            "type": "number",
+            "default": 0,
+            "description": "Discount amount"
+        },
+        "total_amount": {
+            "type": "number",
+            "description": "Final order total"
+        },
+        "payment_mode": {
+            "type": "string",
+            "enum": [
+                "prepaid",
+                "cod"
+            ],
+            "description": "Payment method"
+        },
+        "payment_status": {
+            "type": "string",
+            "enum": [
+                "pending",
+                "completed",
+                "failed",
+                "refunded"
+            ],
+            "default": "pending",
+            "description": "Payment status"
+        },
+        "payment_id": {
+            "type": "string",
+            "description": "Payment gateway transaction ID"
+        },
+        "order_status": {
+            "type": "string",
+            "enum": [
+                "pending",
+                "processing",
+                "packed",
+                "shipped",
+                "out_for_delivery",
+                "delivered",
+                "cancelled",
+                "returned"
+            ],
+            "default": "pending",
+            "description": "Current order status"
+        },
+        "tracking_number": {
+            "type": "string",
+            "description": "Shipment tracking number"
+        },
+        "courier_name": {
+            "type": "string",
+            "description": "Courier service name"
+        },
+        "tracking_updates": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "status": {
+                        "type": "string"
+                    },
+                    "message": {
+                        "type": "string"
+                    },
+                    "timestamp": {
+                        "type": "string"
+                    }
+                }
+            },
+            "description": "Tracking history"
+        },
+        "coupon_code": {
+            "type": "string",
+            "description": "Applied coupon code"
+        },
+        "notes": {
+            "type": "string",
+            "description": "Order notes"
+        },
+        "is_cancelled": {
+            "type": "boolean",
+            "default": false,
+            "description": "Cancellation flag"
+        },
+        "cancellation_reason": {
+            "type": "string",
+            "description": "Reason for cancellation"
+        },
+        "delivered_at": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Delivery timestamp"
+        }
+    },
+    "required": [
+        "order_items",
+        "shipping_address",
+        "total_amount",
+        "payment_mode"
+    ]
+}

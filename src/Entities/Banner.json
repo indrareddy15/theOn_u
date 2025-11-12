@@ -1,0 +1,46 @@
+{
+    "name": "Banner",
+    "type": "object",
+    "properties": {
+        "title": {
+            "type": "string",
+            "description": "Banner title"
+        },
+        "image_url": {
+            "type": "string",
+            "description": "Banner image URL"
+        },
+        "button_text": {
+            "type": "string",
+            "description": "CTA button text"
+        },
+        "link_url": {
+            "type": "string",
+            "description": "Button link URL"
+        },
+        "position": {
+            "type": "string",
+            "enum": [
+                "home_hero",
+                "home_secondary",
+                "category_top"
+            ],
+            "default": "home_hero",
+            "description": "Banner position"
+        },
+        "display_order": {
+            "type": "number",
+            "default": 0,
+            "description": "Sort order"
+        },
+        "is_active": {
+            "type": "boolean",
+            "default": true,
+            "description": "Active status"
+        }
+    },
+    "required": [
+        "title",
+        "image_url"
+    ]
+}

@@ -1,0 +1,67 @@
+{
+    "name": "Address",
+    "type": "object",
+    "properties": {
+        "user_email": {
+            "type": "string",
+            "description": "User email"
+        },
+        "full_name": {
+            "type": "string",
+            "description": "Recipient name"
+        },
+        "phone": {
+            "type": "string",
+            "description": "Contact phone"
+        },
+        "address_line1": {
+            "type": "string",
+            "description": "Address line 1"
+        },
+        "address_line2": {
+            "type": "string",
+            "description": "Address line 2"
+        },
+        "city": {
+            "type": "string",
+            "description": "City"
+        },
+        "state": {
+            "type": "string",
+            "description": "State/Province"
+        },
+        "postal_code": {
+            "type": "string",
+            "description": "Postal/ZIP code"
+        },
+        "country": {
+            "type": "string",
+            "default": "India",
+            "description": "Country"
+        },
+        "is_default": {
+            "type": "boolean",
+            "default": false,
+            "description": "Default address flag"
+        },
+        "address_type": {
+            "type": "string",
+            "enum": [
+                "home",
+                "office",
+                "other"
+            ],
+            "default": "home",
+            "description": "Address type"
+        }
+    },
+    "required": [
+        "user_email",
+        "full_name",
+        "phone",
+        "address_line1",
+        "city",
+        "state",
+        "postal_code"
+    ]
+}

@@ -1,0 +1,32 @@
+{
+    "name": "ContentPage",
+    "type": "object",
+    "properties": {
+        "slug": {
+            "type": "string",
+            "description": "URL slug"
+        },
+        "title": {
+            "type": "string",
+            "description": "Page title"
+        },
+        "content": {
+            "type": "string",
+            "description": "Page HTML content"
+        },
+        "meta_description": {
+            "type": "string",
+            "description": "SEO meta description"
+        },
+        "is_published": {
+            "type": "boolean",
+            "default": false,
+            "description": "Published status"
+        }
+    },
+    "required": [
+        "slug",
+        "title",
+        "content"
+    ]
+}

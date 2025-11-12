@@ -1,0 +1,58 @@
+{
+    "name": "SupportChat",
+    "type": "object",
+    "properties": {
+        "user_email": {
+            "type": "string",
+            "description": "Customer email"
+        },
+        "user_name": {
+            "type": "string",
+            "description": "Customer name"
+        },
+        "status": {
+            "type": "string",
+            "enum": [
+                "open",
+                "in_progress",
+                "resolved"
+            ],
+            "default": "open",
+            "description": "Chat status"
+        },
+        "messages": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "sender": {
+                        "type": "string"
+                    },
+                    "message": {
+                        "type": "string"
+                    },
+                    "timestamp": {
+                        "type": "string"
+                    },
+                    "is_admin": {
+                        "type": "boolean"
+                    }
+                }
+            },
+            "description": "Chat messages"
+        },
+        "last_message": {
+            "type": "string",
+            "description": "Last message preview"
+        },
+        "unread_count": {
+            "type": "number",
+            "default": 0,
+            "description": "Unread messages count"
+        }
+    },
+    "required": [
+        "user_email",
+        "user_name"
+    ]
+}

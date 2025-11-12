@@ -1,0 +1,71 @@
+{
+    "name": "Coupon",
+    "type": "object",
+    "properties": {
+        "code": {
+            "type": "string",
+            "description": "Coupon code"
+        },
+        "description": {
+            "type": "string",
+            "description": "Coupon description"
+        },
+        "discount_type": {
+            "type": "string",
+            "enum": [
+                "percentage",
+                "fixed"
+            ],
+            "description": "Type of discount"
+        },
+        "discount_value": {
+            "type": "number",
+            "description": "Discount amount or percentage"
+        },
+        "min_order_value": {
+            "type": "number",
+            "default": 0,
+            "description": "Minimum order value required"
+        },
+        "max_discount": {
+            "type": "number",
+            "description": "Maximum discount cap for percentage coupons"
+        },
+        "valid_from": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Coupon start date"
+        },
+        "valid_until": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Coupon expiry date"
+        },
+        "usage_limit": {
+            "type": "number",
+            "description": "Total usage limit"
+        },
+        "usage_count": {
+            "type": "number",
+            "default": 0,
+            "description": "Times coupon has been used"
+        },
+        "is_active": {
+            "type": "boolean",
+            "default": true,
+            "description": "Active status"
+        },
+        "applicable_categories": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            },
+            "description": "Categories this coupon applies to"
+        }
+    },
+    "required": [
+        "code",
+        "discount_type",
+        "discount_value"
+    ]
+}

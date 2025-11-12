@@ -1,0 +1,52 @@
+{
+    "name": "SizeChart",
+    "type": "object",
+    "properties": {
+        "category": {
+            "type": "string",
+            "description": "Product category (e.g., shirts, jeans)"
+        },
+        "size_data": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "size": {
+                        "type": "string"
+                    },
+                    "chest": {
+                        "type": "string"
+                    },
+                    "waist": {
+                        "type": "string"
+                    },
+                    "length": {
+                        "type": "string"
+                    },
+                    "shoulder": {
+                        "type": "string"
+                    }
+                }
+            },
+            "description": "Size measurements"
+        },
+        "unit": {
+            "type": "string",
+            "enum": [
+                "inches",
+                "cm"
+            ],
+            "default": "inches",
+            "description": "Measurement unit"
+        },
+        "is_active": {
+            "type": "boolean",
+            "default": true,
+            "description": "Active status"
+        }
+    },
+    "required": [
+        "category",
+        "size_data"
+    ]
+}

@@ -1,0 +1,42 @@
+{
+    "name": "Disclaimer",
+    "type": "object",
+    "properties": {
+        "title": {
+            "type": "string",
+            "description": "Disclaimer title"
+        },
+        "content": {
+            "type": "string",
+            "description": "Disclaimer content/text"
+        },
+        "icon": {
+            "type": "string",
+            "description": "Icon name (e.g., Shield, Truck, RefreshCw)"
+        },
+        "position": {
+            "type": "string",
+            "enum": [
+                "footer",
+                "checkout",
+                "product"
+            ],
+            "default": "footer",
+            "description": "Where to display"
+        },
+        "is_active": {
+            "type": "boolean",
+            "default": true,
+            "description": "Active status"
+        },
+        "display_order": {
+            "type": "number",
+            "default": 0,
+            "description": "Sort order"
+        }
+    },
+    "required": [
+        "title",
+        "content"
+    ]
+}

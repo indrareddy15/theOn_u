@@ -1,0 +1,40 @@
+{
+  "name": "Category",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Category name"
+    },
+    "slug": {
+      "type": "string",
+      "description": "URL-friendly category identifier"
+    },
+    "description": {
+      "type": "string",
+      "description": "Category description"
+    },
+    "parent_category": {
+      "type": "string",
+      "description": "Parent category for subcategories"
+    },
+    "image_url": {
+      "type": "string",
+      "description": "Category banner image"
+    },
+    "is_active": {
+      "type": "boolean",
+      "default": true,
+      "description": "Whether category is visible"
+    },
+    "display_order": {
+      "type": "number",
+      "default": 0,
+      "description": "Sort order for display"
+    }
+  },
+  "required": [
+    "name",
+    "slug"
+  ]
+}
