@@ -91,9 +91,9 @@ export default function Home() {
       </section>
 
       {/* Categories */}
-      <section className="py-20 bg-white">
+      <section className="py-20 md:py-28 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
+          <div className="text-center mb-16 animate-fadeIn">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
               Find Your Perfect Fit
             </h2>
@@ -115,9 +115,9 @@ export default function Home() {
       </section>
 
       {/* Featured Products */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-20 md:py-28 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center mb-12">
+          <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 gap-8 animate-fadeIn">
             <div>
               <div className="flex items-center gap-2 mb-2">
                 <Star className="w-5 h-5 text-yellow-500 fill-yellow-500" />
@@ -164,9 +164,9 @@ export default function Home() {
 
       {/* Customer Reviews */}
       {customerReviews.length > 0 && (
-        <section className="py-20 bg-white">
+        <section className="py-20 md:py-28 bg-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-12">
+            <div className="text-center mb-16 animate-fadeIn">
               <div className="flex items-center justify-center gap-2 mb-2">
                 <Quote className="w-5 h-5 text-gray-600" />
                 <span className="text-sm font-medium text-gray-600">Our Community</span>
@@ -226,9 +226,9 @@ export default function Home() {
       )}
 
       {/* New Arrivals */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-20 md:py-28 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center mb-12">
+          <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 gap-8 animate-fadeIn">
             <div>
               <div className="flex items-center gap-2 mb-2">
                 <TrendingUp className="w-5 h-5 text-green-500" />
