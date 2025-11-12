@@ -82,10 +82,10 @@ export default function ProductCard({ product }) {
 
     return (
         <div
-            className="group cursor-pointer"
+            className="group cursor-pointer animate-fadeIn"
             onClick={() => navigate(`/product/${product.id}`)}
         >
-            <div className="relative aspect-[3/4] rounded-2xl overflow-hidden bg-gray-100 mb-3">
+            <div className="relative aspect-[3/4] rounded-2xl overflow-hidden bg-gray-100 mb-4 shadow-sm group-hover:shadow-lg transition-all duration-300">
                 <img
                     src={mainImage}
                     alt={product.title}
@@ -94,37 +94,37 @@ export default function ProductCard({ product }) {
                 />
 
                 {discount > 0 && (
-                    <Badge className="absolute top-3 left-3 bg-red-500 text-white">
+                    <Badge className="absolute top-4 left-4 bg-red-500 text-white font-semibold shadow-lg">
                         {discount}% OFF
                     </Badge>
                 )}
 
                 {product.total_stock === 0 && (
                     <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
-                        <Badge variant="secondary" className="text-white bg-gray-900">
+                        <Badge variant="secondary" className="text-white bg-gray-900 font-semibold">
                             Out of Stock
                         </Badge>
                     </div>
                 )}
 
-                <div className="absolute top-3 right-3 flex flex-col gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                <div className="absolute top-4 right-4 flex flex-col gap-2 opacity-0 group-hover:opacity-100 transition-all duration-300">
                     <Button
                         size="icon"
                         variant="secondary"
-                        className="rounded-full shadow-lg"
+                        className="rounded-full shadow-lg hover:shadow-xl bg-white/90 backdrop-blur-sm"
                         onClick={handleWishlistToggle}
                         disabled={isLoading}
                     >
                         <Heart
-                            className={`w-5 h-5 ${isWishlisted ? 'fill-red-500 text-red-500' : ''}`}
+                            className={`w-5 h-5 ${isWishlisted ? 'fill-red-500 text-red-500' : 'text-gray-900'}`}
                         />
                     </Button>
                 </div>
 
                 {product.total_stock > 0 && (
-                    <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
+                    <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/70 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300">
                         <Button
-                            className="w-full bg-white text-gray-900 hover:bg-gray-100"
+                            className="w-full bg-white text-gray-900 hover:bg-gray-100 font-semibold shadow-lg"
                             size="sm"
                             onClick={handleQuickAdd}
                         >
@@ -135,29 +135,29 @@ export default function ProductCard({ product }) {
                 )}
             </div>
 
-            <div className="space-y-1">
-                <h3 className="font-medium text-gray-900 truncate group-hover:text-gray-600 transition-colors">
+            <div className="space-y-2">
+                <h3 className="font-semibold text-gray-900 truncate group-hover:text-gray-700 transition-colors line-clamp-2 text-sm">
                     {product.title}
                 </h3>
 
                 {product.average_rating > 0 && (
                     <div className="flex items-center gap-1">
-                        <Star className="w-4 h-4 fill-yellow-400 text-yellow-400" />
-                        <span className="text-sm text-gray-600">
+                        <Star className="w-3.5 h-3.5 fill-yellow-400 text-yellow-400" />
+                        <span className="text-xs font-medium text-gray-600">
                             {product.average_rating.toFixed(1)}
                         </span>
-                        <span className="text-sm text-gray-400">
+                        <span className="text-xs text-gray-400">
                             ({product.review_count})
                         </span>
                     </div>
                 )}
 
-                <div className="flex items-center gap-2">
-                    <span className="font-semibold text-gray-900">
+                <div className="flex items-center gap-2 pt-1">
+                    <span className="font-bold text-gray-900 text-base">
                         ₹{displayPrice.toLocaleString()}
                     </span>
                     {product.sale_price && (
-                        <span className="text-sm text-gray-400 line-through">
+                        <span className="text-xs text-gray-400 line-through">
                             ₹{product.price.toLocaleString()}
                         </span>
                     )}
