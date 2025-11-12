@@ -280,20 +280,20 @@ export default function Home() {
           <div className="absolute top-1/2 left-1/4 w-80 h-80 bg-yellow-400/10 rounded-full mix-blend-multiply filter blur-3xl opacity-20"></div>
           <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-purple-400/10 rounded-full mix-blend-multiply filter blur-3xl opacity-20"></div>
         </div>
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center animate-fadeIn">
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 leading-tight">
             Join the Style Revolution
           </h2>
-          <p className="text-gray-300 text-lg mb-10 max-w-2xl mx-auto leading-relaxed">
+          <p className="text-base md:text-lg text-gray-200 mb-10 max-w-2xl mx-auto leading-relaxed font-medium">
             Sign up for early access and exclusive drops.
           </p>
           <Button
             size="lg"
-            className="bg-white text-gray-900 hover:bg-gray-100 shadow-lg hover:shadow-xl transition-all duration-300"
+            className="bg-white text-gray-900 hover:bg-gray-100 shadow-lg hover:shadow-xl transition-all duration-300 rounded-lg group font-semibold"
             onClick={() => navigate(createPageUrl('Shop'))}
           >
             Shop the Collection
-            <ArrowRight className="ml-2 w-5 h-5" />
+            <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
           </Button>
         </div>
       </section>
