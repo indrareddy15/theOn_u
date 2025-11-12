@@ -59,14 +59,14 @@ export default function Home() {
             </div>
             
             <h1 className="text-5xl md:text-7xl font-bold text-gray-900 mb-6 leading-tight">
-              Elevate Your
+              Redefine Your
               <span className="block bg-gradient-to-r from-gray-900 via-gray-700 to-gray-900 bg-clip-text text-transparent">
-                Style
+                Everyday Style
               </span>
             </h1>
-            
-            <p className="text-xl text-gray-600 mb-8 max-w-lg">
-              Discover the latest trends in fashion. Premium quality clothing designed for the modern individual.
+
+            <p className="text-xl text-gray-600 mb-8 max-w-lg leading-relaxed">
+              Discover premium fashion designed for modern living — curated for those who dress with purpose.
             </p>
             
             <div className="flex flex-wrap gap-4">
@@ -95,10 +95,10 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Shop by Category
+              Find Your Perfect Fit
             </h2>
-            <p className="text-gray-600 max-w-2xl mx-auto">
-              Explore our curated collections designed to match every style and occasion
+            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+              Explore looks that speak your language.
             </p>
           </div>
           
@@ -121,11 +121,16 @@ export default function Home() {
             <div>
               <div className="flex items-center gap-2 mb-2">
                 <Star className="w-5 h-5 text-yellow-500 fill-yellow-500" />
-                <span className="text-sm font-medium text-gray-600">Handpicked for You</span>
+                <span className="text-sm font-medium text-gray-600">Curated Selection</span>
               </div>
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
-                Featured Products
-              </h2>
+              <div>
+                <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-2">
+                  Editor's Picks for You
+                </h2>
+                <p className="text-lg text-gray-600">
+                  Elevate your wardrobe with this season's exclusive pieces.
+                </p>
+              </div>
             </div>
             <Button 
               variant="outline"
@@ -164,11 +169,14 @@ export default function Home() {
             <div className="text-center mb-12">
               <div className="flex items-center justify-center gap-2 mb-2">
                 <Quote className="w-5 h-5 text-gray-600" />
-                <span className="text-sm font-medium text-gray-600">What Our Customers Say</span>
+                <span className="text-sm font-medium text-gray-600">Our Community</span>
               </div>
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
-                Customer Reviews
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-2">
+                Real Stories. Real Style.
               </h2>
+              <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+                Our community speaks for our quality and design.
+              </p>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -222,11 +230,16 @@ export default function Home() {
             <div>
               <div className="flex items-center gap-2 mb-2">
                 <TrendingUp className="w-5 h-5 text-green-500" />
-                <span className="text-sm font-medium text-gray-600">Fresh Off the Runway</span>
+                <span className="text-sm font-medium text-gray-600">Fresh Releases</span>
               </div>
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
-                New Arrivals
-              </h2>
+              <div>
+                <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-2">
+                  Just Dropped
+                </h2>
+                <p className="text-lg text-gray-600">
+                  Be the first to wear what's next in fashion.
+                </p>
+              </div>
             </div>
             <Button 
               variant="outline"
@@ -259,20 +272,24 @@ export default function Home() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">
-            Join Our Fashion Community
+      <section className="relative py-24 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 overflow-hidden">
+        <div className="absolute inset-0">
+          <div className="absolute top-1/2 left-1/4 w-80 h-80 bg-yellow-400/10 rounded-full mix-blend-multiply filter blur-3xl opacity-20"></div>
+          <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-purple-400/10 rounded-full mix-blend-multiply filter blur-3xl opacity-20"></div>
+        </div>
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 leading-tight">
+            Join the Style Revolution
           </h2>
-          <p className="text-gray-300 text-lg mb-8 max-w-2xl mx-auto">
-            Get exclusive access to new collections, special offers, and style inspiration
+          <p className="text-gray-300 text-lg mb-10 max-w-2xl mx-auto leading-relaxed">
+            Sign up for early access and exclusive drops.
           </p>
-          <Button 
+          <Button
             size="lg"
-            className="bg-white text-gray-900 hover:bg-gray-100"
+            className="bg-white text-gray-900 hover:bg-gray-100 shadow-lg hover:shadow-xl transition-all duration-300"
             onClick={() => navigate(createPageUrl('Shop'))}
           >
-            Start Shopping
+            Shop the Collection
             <ArrowRight className="ml-2 w-5 h-5" />
           </Button>
         </div>
