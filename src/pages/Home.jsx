@@ -44,20 +44,20 @@ export default function Home() {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative h-[600px] md:h-[700px] bg-gradient-to-br from-gray-50 via-gray-100 to-gray-50 overflow-hidden">
+      <section className="relative h-[600px] md:h-[750px] bg-gradient-to-br from-gray-50 via-gray-100 to-gray-50 overflow-hidden">
         <div className="absolute inset-0">
           <div className="absolute top-20 right-10 w-72 h-72 bg-purple-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob"></div>
           <div className="absolute bottom-20 left-10 w-72 h-72 bg-yellow-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-2000"></div>
           <div className="absolute top-40 left-1/2 w-72 h-72 bg-pink-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-4000"></div>
         </div>
-        
+
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center">
-          <div className="max-w-2xl">
-            <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/80 backdrop-blur-sm rounded-full mb-6 shadow-sm">
+          <div className="max-w-2xl animate-fadeInDown">
+            <div className="inline-flex items-center gap-2 px-4 py-2.5 bg-white/80 backdrop-blur-sm rounded-full mb-8 shadow-sm hover:shadow-md transition-all duration-300 border border-white/50">
               <Sparkles className="w-4 h-4 text-yellow-500" />
-              <span className="text-sm font-medium text-gray-700">New Season Collection</span>
+              <span className="text-sm font-semibold text-gray-700">New Season Collection</span>
             </div>
-            
+
             <h1 className="text-5xl md:text-7xl font-bold text-gray-900 mb-6 leading-tight">
               Redefine Your
               <span className="block bg-gradient-to-r from-gray-900 via-gray-700 to-gray-900 bg-clip-text text-transparent">
@@ -65,22 +65,23 @@ export default function Home() {
               </span>
             </h1>
 
-            <p className="text-xl text-gray-600 mb-8 max-w-lg leading-relaxed">
+            <p className="text-lg md:text-xl text-gray-600 mb-10 max-w-lg leading-relaxed font-medium">
               Discover premium fashion designed for modern living — curated for those who dress with purpose.
             </p>
-            
-            <div className="flex flex-wrap gap-4">
-              <Button 
-                size="lg" 
-                className="bg-gray-900 hover:bg-gray-800 text-white shadow-lg hover:shadow-xl transition-all duration-300 group"
+
+            <div className="flex flex-col sm:flex-row flex-wrap gap-4">
+              <Button
+                size="lg"
+                className="bg-gray-900 hover:bg-gray-800 text-white shadow-lg hover:shadow-xl transition-all duration-300 group rounded-lg"
                 onClick={() => navigate(createPageUrl('Shop'))}
               >
                 Shop Now
                 <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </Button>
-              <Button 
-                size="lg" 
+              <Button
+                size="lg"
                 variant="outline"
+                className="rounded-lg hover:bg-gray-50 transition-all duration-300"
                 onClick={() => navigate(createPageUrl('Shop'))}
               >
                 Browse Collections
