@@ -98,14 +98,20 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Categories */}
-      <section className="py-20 md:py-28 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16 animate-fadeIn">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4 leading-tight">
+      {/* Categories - Enhanced */}
+      <section className="py-24 md:py-32 bg-white relative overflow-hidden">
+        {/* Subtle background decoration */}
+        <div className="absolute top-0 right-0 w-72 h-72 bg-gray-100/50 rounded-full blur-3xl -mr-32 -mt-32"></div>
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+          <div className="text-center mb-20 animate-fadeIn">
+            <div className="inline-block mb-4">
+              <span className="text-sm font-bold text-gray-600 uppercase tracking-widest">Collections</span>
+            </div>
+            <h2 className="text-4xl md:text-5xl font-black text-gray-900 mb-6 leading-tight">
               Find Your Perfect Fit
             </h2>
-            <p className="text-base md:text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed">
+            <p className="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed font-medium">
               Explore looks that speak your language.
             </p>
           </div>
