@@ -182,19 +182,24 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Customer Reviews */}
+      {/* Customer Reviews - Enhanced */}
       {customerReviews.length > 0 && (
-        <section className="py-20 md:py-28 bg-white">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-16 animate-fadeIn">
-              <div className="flex items-center justify-center gap-2 mb-3">
-                <Quote className="w-5 h-5 text-gray-600" />
-                <span className="text-sm font-semibold text-gray-600">Our Community</span>
+        <section className="py-24 md:py-32 bg-gradient-to-b from-white to-gray-50 relative overflow-hidden">
+          {/* Decorative elements */}
+          <div className="absolute top-1/2 left-1/4 w-80 h-80 bg-pink-100/30 rounded-full blur-3xl transform -translate-x-1/2 -translate-y-1/2"></div>
+
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+            <div className="text-center mb-20 animate-fadeIn">
+              <div className="flex items-center justify-center gap-3 mb-4">
+                <div className="p-2 bg-gray-200 rounded-lg">
+                  <Quote className="w-5 h-5 text-gray-700" />
+                </div>
+                <span className="text-sm font-bold text-gray-600 uppercase tracking-widest">Testimonials</span>
               </div>
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4 leading-tight">
+              <h2 className="text-4xl md:text-5xl font-black text-gray-900 mb-6 leading-tight">
                 Real Stories. Real Style.
               </h2>
-              <p className="text-base md:text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed">
+              <p className="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed font-medium">
                 Our community speaks for our quality and design.
               </p>
             </div>
