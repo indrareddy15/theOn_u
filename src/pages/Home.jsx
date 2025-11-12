@@ -43,36 +43,55 @@ export default function Home() {
 
   return (
     <div className="min-h-screen">
-      {/* Hero Section */}
-      <section className="relative h-[600px] md:h-[750px] bg-gradient-to-br from-gray-50 via-gray-100 to-gray-50 overflow-hidden">
-        <div className="absolute inset-0">
-          <div className="absolute top-20 right-10 w-72 h-72 bg-purple-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob"></div>
-          <div className="absolute bottom-20 left-10 w-72 h-72 bg-yellow-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-2000"></div>
-          <div className="absolute top-40 left-1/2 w-72 h-72 bg-pink-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-4000"></div>
+      {/* Cinematic Luxury Hero Section */}
+      <section className="relative h-[600px] md:h-[750px] overflow-hidden bg-black">
+        {/* Background Gradient Layers - Cream & Gold Palette */}
+        <div className="absolute inset-0 bg-gradient-to-br from-amber-50 via-amber-100 to-orange-50"></div>
+
+        {/* Drifting Light - Animated Gold Glow */}
+        <div className="absolute inset-0 overflow-hidden">
+          <div className="absolute -top-1/2 -right-1/4 w-96 h-96 bg-gradient-radial from-yellow-200 to-transparent rounded-full mix-blend-lighten filter blur-3xl opacity-40 animate-drift"></div>
+          <div className="absolute -bottom-1/2 -left-1/4 w-80 h-80 bg-gradient-radial from-amber-200 to-transparent rounded-full mix-blend-lighten filter blur-3xl opacity-30 animate-drift-slow"></div>
         </div>
 
+        {/* Parallax Depth Layer - Subtle Moving Background */}
+        <div className="absolute inset-0 opacity-20">
+          <div className="absolute top-0 left-0 right-0 h-1/3 bg-gradient-to-b from-white/50 to-transparent animate-parallax-subtle"></div>
+          <div className="absolute bottom-0 left-0 right-0 h-1/3 bg-gradient-to-t from-amber-900/10 to-transparent animate-parallax-reverse"></div>
+        </div>
+
+        {/* Shimmer Glow Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent animate-shimmer-glow opacity-50 pointer-events-none"></div>
+
+        {/* Content Container */}
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center">
-          <div className="max-w-2xl animate-fadeInDown">
-            <div className="inline-flex items-center gap-2 px-4 py-2.5 bg-white/80 backdrop-blur-sm rounded-full mb-8 shadow-sm hover:shadow-md transition-all duration-300 border border-white/50">
-              <Sparkles className="w-4 h-4 text-yellow-500" />
-              <span className="text-sm font-semibold text-gray-700">New Season Collection</span>
+          <div className="max-w-2xl animate-fadeInUp">
+            {/* Badge */}
+            <div className="inline-flex items-center gap-2 px-4 py-2.5 bg-white/70 backdrop-blur-md rounded-full mb-8 shadow-sm hover:shadow-md transition-all duration-300 border border-white/60 animate-float">
+              <Sparkles className="w-4 h-4 text-amber-600" />
+              <span className="text-sm font-semibold bg-gradient-to-r from-amber-900 to-amber-700 bg-clip-text text-transparent">New Season Collection</span>
             </div>
 
-            <h1 className="text-5xl md:text-7xl font-bold text-gray-900 mb-6 leading-tight">
-              Redefine Your
-              <span className="block bg-gradient-to-r from-gray-900 via-gray-700 to-gray-900 bg-clip-text text-transparent">
+            {/* Headline */}
+            <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
+              <span className="block text-gray-900 animate-fadeInUp" style={{ animationDelay: '0.1s' }}>
+                Redefine Your
+              </span>
+              <span className="block bg-gradient-to-r from-amber-900 via-amber-600 to-yellow-500 bg-clip-text text-transparent animate-fadeInUp" style={{ animationDelay: '0.2s' }}>
                 Everyday Style
               </span>
             </h1>
 
-            <p className="text-lg md:text-xl text-gray-600 mb-10 max-w-lg leading-relaxed font-medium">
+            {/* Subheading */}
+            <p className="text-lg md:text-xl text-gray-700 mb-10 max-w-lg leading-relaxed font-medium animate-fadeInUp" style={{ animationDelay: '0.3s' }}>
               Discover premium fashion designed for modern living — curated for those who dress with purpose.
             </p>
 
-            <div className="flex flex-col sm:flex-row flex-wrap gap-4">
+            {/* CTA Buttons */}
+            <div className="flex flex-col sm:flex-row flex-wrap gap-4 animate-fadeInUp" style={{ animationDelay: '0.4s' }}>
               <Button
                 size="lg"
-                className="bg-gray-900 hover:bg-gray-800 text-white shadow-lg hover:shadow-xl transition-all duration-300 group rounded-lg"
+                className="bg-gradient-to-r from-amber-900 to-amber-800 hover:from-amber-800 hover:to-amber-700 text-white shadow-lg hover:shadow-xl transition-all duration-300 group rounded-lg font-semibold"
                 onClick={() => navigate(createPageUrl('Shop'))}
               >
                 Shop Now
@@ -81,7 +100,7 @@ export default function Home() {
               <Button
                 size="lg"
                 variant="outline"
-                className="rounded-lg hover:bg-gray-50 transition-all duration-300"
+                className="rounded-lg bg-white/60 hover:bg-white/80 border-white/50 text-gray-900 transition-all duration-300 font-semibold backdrop-blur-sm"
                 onClick={() => navigate(createPageUrl('Shop'))}
               >
                 Browse Collections
