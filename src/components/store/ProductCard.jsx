@@ -94,14 +94,14 @@ export default function ProductCard({ product }) {
                 />
 
                 {discount > 0 && (
-                    <Badge className="absolute top-3 left-3 bg-red-500 text-white">
+                    <Badge variant="destructive" className="absolute top-3 left-3">
                         {discount}% OFF
                     </Badge>
                 )}
 
                 {product.total_stock === 0 && (
                     <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
-                        <Badge variant="secondary" className="text-white bg-gray-900">
+                        <Badge variant="secondary" className="font-semibold">
                             Out of Stock
                         </Badge>
                     </div>
@@ -124,7 +124,7 @@ export default function ProductCard({ product }) {
                 {product.total_stock > 0 && (
                     <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
                         <Button
-                            className="w-full bg-white text-gray-900 hover:bg-gray-100"
+                            className="w-full bg-gray-900 text-white hover:bg-gray-800 border border-gray-900 font-medium shadow-lg hover:shadow-xl transition-all"
                             size="sm"
                             onClick={handleQuickAdd}
                         >

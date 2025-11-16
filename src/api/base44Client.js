@@ -201,7 +201,7 @@ class MockBase44Client {
                     category_id: 1,
                     category: 'fashion',
                     sub_category: 'tops',
-                    gender: 'unisex',
+                    gender: 'men',
                     image_url: 'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=400',
                     images: ['https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=500'],
                     total_stock: 50,
@@ -215,10 +215,50 @@ class MockBase44Client {
                         { size: 'XL', stock: 5 }
                     ],
                     colors: [
-                        { name: 'white' },
-                        { name: 'black' },
-                        { name: 'gray' },
-                        { name: 'navy' }
+                        {
+                            name: 'white',
+                            code: '#FFFFFF',
+                            images: [
+                                'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=500&h=500&fit=crop',
+                                'https://images.unsplash.com/photo-1503342394128-c104cbb9810d?w=500&h=500&fit=crop',
+                                'https://images.unsplash.com/photo-1485527073247-4d71bcdd2085?w=500&h=500&fit=crop',
+                                'https://images.unsplash.com/photo-1506629082847-11d3e392e787?w=500&h=500&fit=crop',
+                                'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=500&h=500&fit=crop'
+                            ]
+                        },
+                        {
+                            name: 'black',
+                            code: '#000000',
+                            images: [
+                                'https://images.unsplash.com/photo-1577519927032-0c26f82f0078?w=500&h=500&fit=crop',
+                                'https://images.unsplash.com/photo-1552062407-c991827e50fa?w=500&h=500&fit=crop',
+                                'https://images.unsplash.com/photo-1538272604599-11d0fa45e647?w=500&h=500&fit=crop',
+                                'https://images.unsplash.com/photo-1570155766b28-c7b1d9de1f26?w=500&h=500&fit=crop',
+                                'https://images.unsplash.com/photo-1549887534-a149e02811ba?w=500&h=500&fit=crop'
+                            ]
+                        },
+                        {
+                            name: 'gray',
+                            code: '#808080',
+                            images: [
+                                'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=500&h=500&fit=crop',
+                                'https://images.unsplash.com/photo-1485846234645-a62644f84728?w=500&h=500&fit=crop',
+                                'https://images.unsplash.com/photo-1551434365-5ac45c72a5a6?w=500&h=500&fit=crop',
+                                'https://images.unsplash.com/photo-1556821552-5ff63b1c3f1d?w=500&h=500&fit=crop',
+                                'https://images.unsplash.com/photo-1548260487-e2e0aa9e5918?w=500&h=500&fit=crop'
+                            ]
+                        },
+                        {
+                            name: 'navy',
+                            code: '#001F3F',
+                            images: [
+                                'https://images.unsplash.com/photo-1551984014-7ee0bcc3e72b?w=500&h=500&fit=crop',
+                                'https://images.unsplash.com/photo-1552062407-98eeb64c6a62?w=500&h=500&fit=crop',
+                                'https://images.unsplash.com/photo-1506629082847-11d3e392e787?w=500&h=500&fit=crop',
+                                'https://images.unsplash.com/photo-1533632066927-ab7129e45dd9?w=500&h=500&fit=crop',
+                                'https://images.unsplash.com/photo-1523170635258-f875763c1135?w=500&h=500&fit=crop'
+                            ]
+                        }
                     ],
                     created_date: new Date().toISOString()
                 },
@@ -247,10 +287,50 @@ class MockBase44Client {
                         { size: 'L', stock: 4 }
                     ],
                     colors: [
-                        { name: 'black' },
-                        { name: 'red' },
-                        { name: 'blue' },
-                        { name: 'green' }
+                        {
+                            name: 'black',
+                            code: '#000000',
+                            images: [
+                                'https://images.unsplash.com/photo-1566479179817-c0a5c4df3e07?w=500&h=500&fit=crop',
+                                'https://images.unsplash.com/photo-1552062407-98eeb64c6a62?w=500&h=500&fit=crop',
+                                'https://images.unsplash.com/photo-1551984014-7ee0bcc3e72b?w=500&h=500&fit=crop',
+                                'https://images.unsplash.com/photo-1538272604599-11d0fa45e647?w=500&h=500&fit=crop',
+                                'https://images.unsplash.com/photo-1568062702912-bcf149ef45f5?w=500&h=500&fit=crop'
+                            ]
+                        },
+                        {
+                            name: 'red',
+                            code: '#FF0000',
+                            images: [
+                                'https://images.unsplash.com/photo-1495521821757-a1efb6729352?w=500&h=500&fit=crop',
+                                'https://images.unsplash.com/photo-1586235720210-f3899df5b8da?w=500&h=500&fit=crop',
+                                'https://images.unsplash.com/photo-1534349052301-371d7400891e?w=500&h=500&fit=crop',
+                                'https://images.unsplash.com/photo-1503342394128-c104cbb9810d?w=500&h=500&fit=crop',
+                                'https://images.unsplash.com/photo-1578637387667-4d39e48f3e60?w=500&h=500&fit=crop'
+                            ]
+                        },
+                        {
+                            name: 'blue',
+                            code: '#0000FF',
+                            images: [
+                                'https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?w=500&h=500&fit=crop',
+                                'https://images.unsplash.com/photo-1505747774183-2d71bcdd2065?w=500&h=500&fit=crop',
+                                'https://images.unsplash.com/photo-1490578474895-699cd4e0fb6b?w=500&h=500&fit=crop',
+                                'https://images.unsplash.com/photo-1542834369-4e4f7a8d5f5e?w=500&h=500&fit=crop',
+                                'https://images.unsplash.com/photo-1585487000714-f3519e5f0575?w=500&h=500&fit=crop'
+                            ]
+                        },
+                        {
+                            name: 'green',
+                            code: '#008000',
+                            images: [
+                                'https://images.unsplash.com/photo-1595777707802-221b12b50f0d?w=500&h=500&fit=crop',
+                                'https://images.unsplash.com/photo-1550008606-9a0d8b77d32e?w=500&h=500&fit=crop',
+                                'https://images.unsplash.com/photo-1556228578-8c89e6adf883?w=500&h=500&fit=crop',
+                                'https://images.unsplash.com/photo-1555529392-64673f53b41d?w=500&h=500&fit=crop',
+                                'https://images.unsplash.com/photo-1539681912303-d0a9b401f18f?w=500&h=500&fit=crop'
+                            ]
+                        }
                     ],
                     created_date: new Date().toISOString()
                 },
@@ -274,9 +354,30 @@ class MockBase44Client {
                     description: 'High-quality wireless headphones with noise cancellation.',
                     sizes: [],
                     colors: [
-                        { name: 'black' },
-                        { name: 'white' },
-                        { name: 'silver' }
+                        {
+                            name: 'black',
+                            code: '#000000',
+                            images: [
+                                'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=500',
+                                'https://images.unsplash.com/photo-1484704849700-f032a568e944?w=500'
+                            ]
+                        },
+                        {
+                            name: 'white',
+                            code: '#FFFFFF',
+                            images: [
+                                'https://images.unsplash.com/photo-1487215078519-e21cc028cb29?w=500',
+                                'https://images.unsplash.com/photo-1487215078519-e21cc028cb29?fit=crop&w=500&h=500&q=80'
+                            ]
+                        },
+                        {
+                            name: 'silver',
+                            code: '#C0C0C0',
+                            images: [
+                                'https://images.unsplash.com/photo-1484704849700-f032a568e944?w=500',
+                                'https://images.unsplash.com/photo-1484704849700-f032a568e944?fit=crop&w=500&h=500&q=80'
+                            ]
+                        }
                     ],
                     created_date: new Date().toISOString()
                 },
@@ -290,8 +391,8 @@ class MockBase44Client {
                     is_active: true,
                     category_id: 4,
                     category: 'home-garden',
-                    sub_category: 'lighting',
-                    gender: 'unisex',
+                    sub_category: 'bags',
+                    gender: 'men',
                     image_url: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400',
                     images: ['https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500'],
                     total_stock: 8,
@@ -300,9 +401,30 @@ class MockBase44Client {
                     description: 'A modern minimalist lamp to brighten up any space.',
                     sizes: [],
                     colors: [
-                        { name: 'white' },
-                        { name: 'black' },
-                        { name: 'brass' }
+                        {
+                            name: 'white',
+                            code: '#FFFFFF',
+                            images: [
+                                'https://images.unsplash.com/photo-1565636192335-14c46fa1120d?w=500',
+                                'https://images.unsplash.com/photo-1565636192335-14c46fa1120d?fit=crop&w=500&h=500&q=80'
+                            ]
+                        },
+                        {
+                            name: 'black',
+                            code: '#000000',
+                            images: [
+                                'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500',
+                                'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?fit=crop&w=500&h=500&q=80'
+                            ]
+                        },
+                        {
+                            name: 'brass',
+                            code: '#B5A642',
+                            images: [
+                                'https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=500',
+                                'https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?fit=crop&w=500&h=500&q=80'
+                            ]
+                        }
                     ],
                     created_date: new Date().toISOString()
                 },
@@ -317,9 +439,9 @@ class MockBase44Client {
                     category_id: 1,
                     category: 'fashion',
                     sub_category: 'outerwear',
-                    gender: 'unisex',
-                    image_url: 'https://images.unsplash.com/photo-1544966503-7cc5ac882d5e?w=400',
-                    images: ['https://images.unsplash.com/photo-1544966503-7cc5ac882d5e?w=500'],
+                    gender: 'men',
+                    image_url: 'https://unsplash.com/photos/man-leaning-on-tree-KKZmUQjTO2E',
+                    images: ['https://unsplash.com/photos/man-leaning-on-tree-KKZmUQjTO2E'],
                     total_stock: 30,
                     average_rating: 4.4,
                     review_count: 35,
@@ -331,9 +453,39 @@ class MockBase44Client {
                         { size: 'XL', stock: 3 }
                     ],
                     colors: [
-                        { name: 'blue' },
-                        { name: 'black' },
-                        { name: 'light-blue' }
+                        {
+                            name: 'blue',
+                            code: '#1E40AF',
+                            images: [
+                                'https://unsplash.com/photos/a-close-up-of-a-person-wearing-a-jean-jacket-eR5_g4GsqNI',
+                                'https://unsplash.com/photos/man-in-blue-denim-jacket-wearing-black-cap-VYuV0yZc5eI',
+                                'https://images.unsplash.com/photo-1485527073247-4d71bcdd2085?w=500&h=500&fit=crop',
+                                'https://images.unsplash.com/photo-1506629082847-11d3e392e787?w=500&h=500&fit=crop',
+                                'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=500&h=500&fit=crop'
+                            ]
+                        },
+                        {
+                            name: 'black',
+                            code: '#000000',
+                            images: [
+                                'https://images.unsplash.com/photo-1516762714899-e21cad00ae3e?w=500&h=500&fit=crop',
+                                'https://images.unsplash.com/photo-1534070712616-1b129b124cb5?w=500&h=500&fit=crop',
+                                'https://images.unsplash.com/photo-1516762714899-e21cad00ae3e?w=500&h=500&fit=crop',
+                                'https://images.unsplash.com/photo-1548681528-6a846cf17f12?w=500&h=500&fit=crop',
+                                'https://images.unsplash.com/photo-1552062407-98eeb64c6a62?w=500&h=500&fit=crop'
+                            ]
+                        },
+                        {
+                            name: 'light-blue',
+                            code: '#87CEEB',
+                            images: [
+                                'https://images.unsplash.com/photo-1576856768435-e59a6d4ce2e8?w=500&h=500&fit=crop',
+                                'https://images.unsplash.com/photo-1506629082847-11d3e392e787?w=500&h=500&fit=crop',
+                                'https://images.unsplash.com/photo-1511895426328-dc8714191300?w=500&h=500&fit=crop',
+                                'https://images.unsplash.com/photo-1542191881-17abab8ce7d4?w=500&h=500&fit=crop',
+                                'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=500&h=500&fit=crop'
+                            ]
+                        }
                     ],
                     created_date: new Date().toISOString()
                 },
@@ -362,10 +514,50 @@ class MockBase44Client {
                         { size: 'L', stock: 2 }
                     ],
                     colors: [
-                        { name: 'white' },
-                        { name: 'pink' },
-                        { name: 'yellow' },
-                        { name: 'blue' }
+                        {
+                            name: 'white',
+                            code: '#FFFFFF',
+                            images: [
+                                'https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?w=500&h=500&fit=crop',
+                                'https://images.unsplash.com/photo-1573369776514-fa28c726b0e3?w=500&h=500&fit=crop',
+                                'https://images.unsplash.com/photo-1567401893414-0e51174d27ac?w=500&h=500&fit=crop',
+                                'https://images.unsplash.com/photo-1542818906-fe504e3a5178?w=500&h=500&fit=crop',
+                                'https://images.unsplash.com/photo-1506629082847-11d3e392e787?w=500&h=500&fit=crop'
+                            ]
+                        },
+                        {
+                            name: 'pink',
+                            code: '#FFC0CB',
+                            images: [
+                                'https://images.unsplash.com/photo-1587215881519-e21cc028cb29?w=500&h=500&fit=crop',
+                                'https://images.unsplash.com/photo-1578932750294-708c5f5b6fcc?w=500&h=500&fit=crop',
+                                'https://images.unsplash.com/photo-1591563227032-46550816da90?w=500&h=500&fit=crop',
+                                'https://images.unsplash.com/photo-1537368310686-c8eb1daa7aeb?w=500&h=500&fit=crop',
+                                'https://images.unsplash.com/photo-1588225712346-f49a16dd49c1?w=500&h=500&fit=crop'
+                            ]
+                        },
+                        {
+                            name: 'yellow',
+                            code: '#FFFF00',
+                            images: [
+                                'https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=500&h=500&fit=crop',
+                                'https://images.unsplash.com/photo-1578932750294-708c5f5b6fcc?w=500&h=500&fit=crop',
+                                'https://images.unsplash.com/photo-1483985323486-9185f7ff0471?w=500&h=500&fit=crop',
+                                'https://images.unsplash.com/photo-1534888286748-24af3278442d?w=500&h=500&fit=crop',
+                                'https://images.unsplash.com/photo-1578932750294-708c5f5b6fcc?w=500&h=500&fit=crop'
+                            ]
+                        },
+                        {
+                            name: 'blue',
+                            code: '#0000FF',
+                            images: [
+                                'https://images.unsplash.com/photo-1583394838336-acd977736f90?w=500&h=500&fit=crop',
+                                'https://images.unsplash.com/photo-1505505747212-cc28280fc4a1?w=500&h=500&fit=crop',
+                                'https://images.unsplash.com/photo-1505747747412-c682cf75ce4e?w=500&h=500&fit=crop',
+                                'https://images.unsplash.com/photo-1490114538519-15067e3afe01?w=500&h=500&fit=crop',
+                                'https://images.unsplash.com/photo-1506062413872-a4c9b7d3d95e?w=500&h=500&fit=crop'
+                            ]
+                        }
                     ],
                     created_date: new Date().toISOString()
                 },
@@ -395,10 +587,50 @@ class MockBase44Client {
                         { size: '12', stock: 2 }
                     ],
                     colors: [
-                        { name: 'white' },
-                        { name: 'black' },
-                        { name: 'gray' },
-                        { name: 'navy' }
+                        {
+                            name: 'white',
+                            code: '#FFFFFF',
+                            images: [
+                                'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=500&h=500&fit=crop',
+                                'https://images.unsplash.com/photo-1460353581641-37baddab0fa2?w=500&h=500&fit=crop',
+                                'https://images.unsplash.com/photo-1525966222134-fcebf04d5f5f?w=500&h=500&fit=crop',
+                                'https://images.unsplash.com/photo-1562062170-4f7b31b64ac7?w=500&h=500&fit=crop',
+                                'https://images.unsplash.com/photo-1511926236486-a01980e01a18?w=500&h=500&fit=crop'
+                            ]
+                        },
+                        {
+                            name: 'black',
+                            code: '#000000',
+                            images: [
+                                'https://images.unsplash.com/photo-1549298916-b41d501d3772?w=500&h=500&fit=crop',
+                                'https://images.unsplash.com/photo-1552062407-98eeb64c6a62?w=500&h=500&fit=crop',
+                                'https://images.unsplash.com/photo-1534070712616-1b129b124cb5?w=500&h=500&fit=crop',
+                                'https://images.unsplash.com/photo-1546868871-7041f2a55e12?w=500&h=500&fit=crop',
+                                'https://images.unsplash.com/photo-1548260487-e2e0aa9e5918?w=500&h=500&fit=crop'
+                            ]
+                        },
+                        {
+                            name: 'gray',
+                            code: '#808080',
+                            images: [
+                                'https://images.unsplash.com/photo-1460353581641-37baddab0fa2?w=500&h=500&fit=crop',
+                                'https://images.unsplash.com/photo-1514989940723-e8987cbde38b?w=500&h=500&fit=crop',
+                                'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=500&h=500&fit=crop',
+                                'https://images.unsplash.com/photo-1478098711619-69891b0ec21a?w=500&h=500&fit=crop',
+                                'https://images.unsplash.com/photo-1551028719-00167b16ebc5?w=500&h=500&fit=crop'
+                            ]
+                        },
+                        {
+                            name: 'navy',
+                            code: '#001F3F',
+                            images: [
+                                'https://images.unsplash.com/photo-1549298916-b41d501d3772?w=500&h=500&fit=crop',
+                                'https://images.unsplash.com/photo-1542191881-17abab8ce7d4?w=500&h=500&fit=crop',
+                                'https://images.unsplash.com/photo-1533632066927-ab7129e45dd9?w=500&h=500&fit=crop',
+                                'https://images.unsplash.com/photo-1476766535371-b4e5ad50c0f1?w=500&h=500&fit=crop',
+                                'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=500&h=500&fit=crop'
+                            ]
+                        }
                     ],
                     created_date: new Date().toISOString()
                 },
@@ -412,7 +644,7 @@ class MockBase44Client {
                     is_active: true,
                     category_id: 2,
                     category: 'beauty',
-                    sub_category: 'makeup',
+                    sub_category: 'bags',
                     gender: 'women',
                     image_url: 'https://images.unsplash.com/photo-1586495777744-4413f21062fa?w=400',
                     images: ['https://images.unsplash.com/photo-1586495777744-4413f21062fa?w=500'],
@@ -422,11 +654,46 @@ class MockBase44Client {
                     description: 'Long-lasting lipstick set in various shades.',
                     sizes: [],
                     colors: [
-                        { name: 'red' },
-                        { name: 'pink' },
-                        { name: 'coral' },
-                        { name: 'berry' },
-                        { name: 'nude' }
+                        {
+                            name: 'red',
+                            code: '#FF0000',
+                            images: [
+                                'https://images.unsplash.com/photo-1586495777744-4413f21062fa?w=500',
+                                'https://images.unsplash.com/photo-1586495777744-4413f21062fa?fit=crop&w=500&h=500&q=80'
+                            ]
+                        },
+                        {
+                            name: 'pink',
+                            code: '#FFC0CB',
+                            images: [
+                                'https://images.unsplash.com/photo-1586495777744-4413f21062fa?w=500',
+                                'https://images.unsplash.com/photo-1586495777744-4413f21062fa?fit=crop&w=500&h=500&q=80'
+                            ]
+                        },
+                        {
+                            name: 'coral',
+                            code: '#FF7F50',
+                            images: [
+                                'https://images.unsplash.com/photo-1586495777744-4413f21062fa?w=500',
+                                'https://images.unsplash.com/photo-1586495777744-4413f21062fa?fit=crop&w=500&h=500&q=80'
+                            ]
+                        },
+                        {
+                            name: 'berry',
+                            code: '#800020',
+                            images: [
+                                'https://images.unsplash.com/photo-1586495777744-4413f21062fa?w=500',
+                                'https://images.unsplash.com/photo-1586495777744-4413f21062fa?fit=crop&w=500&h=500&q=80'
+                            ]
+                        },
+                        {
+                            name: 'nude',
+                            code: '#D4A5A5',
+                            images: [
+                                'https://images.unsplash.com/photo-1586495777744-4413f21062fa?w=500',
+                                'https://images.unsplash.com/photo-1586495777744-4413f21062fa?fit=crop&w=500&h=500&q=80'
+                            ]
+                        }
                     ],
                     created_date: new Date().toISOString()
                 },
@@ -440,8 +707,8 @@ class MockBase44Client {
                     is_active: true,
                     category_id: 5,
                     category: 'sports',
-                    sub_category: 'fitness',
-                    gender: 'unisex',
+                    sub_category: 'bags',
+                    gender: 'men',
                     image_url: 'https://images.unsplash.com/photo-1575311373937-040b8e1fd5b6?w=400',
                     images: ['https://images.unsplash.com/photo-1575311373937-040b8e1fd5b6?w=500'],
                     total_stock: 25,
@@ -454,10 +721,10 @@ class MockBase44Client {
                         { size: 'L', stock: 5 }
                     ],
                     colors: [
-                        { name: 'black' },
-                        { name: 'gray' },
-                        { name: 'blue' },
-                        { name: 'pink' }
+                        { name: 'black', code: '#000000', images: ['https://images.unsplash.com/photo-1575311373937-040b8e1fd5b6?w=500'] },
+                        { name: 'gray', code: '#808080', images: ['https://images.unsplash.com/photo-1575311373937-040b8e1fd5b6?w=500'] },
+                        { name: 'blue', code: '#0000FF', images: ['https://images.unsplash.com/photo-1575311373937-040b8e1fd5b6?w=500'] },
+                        { name: 'pink', code: '#FFC0CB', images: ['https://images.unsplash.com/photo-1575311373937-040b8e1fd5b6?w=500'] }
                     ],
                     created_date: new Date().toISOString()
                 },
@@ -481,10 +748,10 @@ class MockBase44Client {
                     description: 'Elegant designer handbag made from genuine leather.',
                     sizes: [],
                     colors: [
-                        { name: 'black' },
-                        { name: 'brown' },
-                        { name: 'tan' },
-                        { name: 'red' }
+                        { name: 'black', code: '#000000', images: ['https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=500'] },
+                        { name: 'brown', code: '#8B4513', images: ['https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=500'] },
+                        { name: 'tan', code: '#D2B48C', images: ['https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=500'] },
+                        { name: 'red', code: '#FF0000', images: ['https://images.unsplash.com/photo-1590736969955-71cc94901144?w=500'] }
                     ],
                     created_date: new Date().toISOString()
                 },
@@ -530,8 +797,8 @@ class MockBase44Client {
                     is_active: true,
                     category_id: 6,
                     category: 'accessories',
-                    sub_category: 'scarves',
-                    gender: 'unisex',
+                    sub_category: 'bags',
+                    gender: 'women',
                     image_url: 'https://images.unsplash.com/photo-1601924994987-69e26d50dc26?w=400',
                     images: ['https://images.unsplash.com/photo-1601924994987-69e26d50dc26?w=500'],
                     total_stock: 60,
@@ -559,7 +826,7 @@ class MockBase44Client {
                     category_id: 1,
                     category: 'fashion',
                     sub_category: 'bottoms',
-                    gender: 'unisex',
+                    gender: 'men',
                     image_url: 'https://images.unsplash.com/photo-1542272604-787c3835535d?w=400',
                     images: ['https://images.unsplash.com/photo-1542272604-787c3835535d?w=500'],
                     total_stock: 35,
@@ -617,8 +884,8 @@ class MockBase44Client {
                     category: 'fashion',
                     sub_category: 'dresses',
                     gender: 'women',
-                    image_url: 'https://images.unsplash.com/photo-1566479179817-c0a5c4df3e07?w=400',
-                    images: ['https://images.unsplash.com/photo-1566479179817-c0a5c4df3e07?w=500'],
+                    image_url: 'https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?w=400',
+                    images: ['https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?w=500'],
                     total_stock: 18,
                     average_rating: 4.9,
                     review_count: 67,
@@ -675,8 +942,8 @@ class MockBase44Client {
                     category: 'fashion',
                     sub_category: 'shoes',
                     gender: 'women',
-                    image_url: 'https://images.unsplash.com/photo-1544966503-7cc5ac882d5e?w=400',
-                    images: ['https://images.unsplash.com/photo-1544966503-7cc5ac882d5e?w=500'],
+                    image_url: 'https://images.unsplash.com/photo-1543163521-9733539c62d9?w=400',
+                    images: ['https://images.unsplash.com/photo-1543163521-9733539c62d9?w=500'],
                     total_stock: 25,
                     average_rating: 4.8,
                     review_count: 73,
@@ -786,7 +1053,7 @@ class MockBase44Client {
                     category_id: 1,
                     category: 'fashion',
                     sub_category: 'tops',
-                    gender: 'unisex',
+                    gender: 'men',
                     image_url: 'https://images.unsplash.com/photo-1556821840-3a63f95609a7?w=400',
                     images: ['https://images.unsplash.com/photo-1556821840-3a63f95609a7?w=500'],
                     total_stock: 38,
@@ -845,8 +1112,8 @@ class MockBase44Client {
                     is_active: true,
                     category_id: 5,
                     category: 'sports',
-                    sub_category: 'footwear',
-                    gender: 'unisex',
+                    sub_category: 'shoes',
+                    gender: 'men',
                     image_url: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=400',
                     images: ['https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=500'],
                     total_stock: 45,
@@ -988,8 +1255,8 @@ class MockBase44Client {
                     is_active: true,
                     category_id: 5,
                     category: 'sports',
-                    sub_category: 'accessories',
-                    gender: 'unisex',
+                    sub_category: 'bags',
+                    gender: 'men',
                     image_url: 'https://images.unsplash.com/photo-1602143407151-7111542de6e8?w=400',
                     images: ['https://images.unsplash.com/photo-1602143407151-7111542de6e8?w=500'],
                     total_stock: 75,
@@ -1050,8 +1317,8 @@ class MockBase44Client {
                     is_active: true,
                     category_id: 3,
                     category: 'electronics',
-                    sub_category: 'accessories',
-                    gender: 'unisex',
+                    sub_category: 'bags',
+                    gender: 'men',
                     image_url: 'https://images.unsplash.com/photo-1527814050087-3793815479db?w=400',
                     images: ['https://images.unsplash.com/photo-1527814050087-3793815479db?w=500'],
                     total_stock: 65,
@@ -1066,6 +1333,129 @@ class MockBase44Client {
                         { name: 'black' }
                     ],
                     created_date: new Date(Date.now() - 1555200000).toISOString()
+                },
+                {
+                    id: 31,
+                    name: 'Kids T-Shirt',
+                    title: 'Colorful Kids T-Shirt',
+                    price: 899,
+                    sale_price: null,
+                    is_featured: true,
+                    is_active: true,
+                    category_id: 1,
+                    category: 'fashion',
+                    sub_category: 'tops',
+                    gender: 'kids',
+                    image_url: 'https://images.unsplash.com/photo-1503919545889-aef636e10ad4?w=400',
+                    images: ['https://images.unsplash.com/photo-1503919545889-aef636e10ad4?w=500'],
+                    total_stock: 40,
+                    average_rating: 4.6,
+                    review_count: 45,
+                    description: 'Bright and comfortable t-shirt perfect for active kids.',
+                    sizes: [
+                        { size: '4T', stock: 8 },
+                        { size: '5T', stock: 10 },
+                        { size: '6', stock: 12 },
+                        { size: '8', stock: 10 }
+                    ],
+                    colors: [
+                        { name: 'red' },
+                        { name: 'blue' },
+                        { name: 'green' },
+                        { name: 'yellow' }
+                    ],
+                    created_date: new Date(Date.now() - 1000000000).toISOString()
+                },
+                {
+                    id: 32,
+                    name: 'Kids Dress',
+                    title: 'Pretty Princess Dress',
+                    price: 1299,
+                    sale_price: 999,
+                    is_featured: true,
+                    is_active: true,
+                    category_id: 1,
+                    category: 'fashion',
+                    sub_category: 'dresses',
+                    gender: 'kids',
+                    image_url: 'https://images.unsplash.com/photo-1518831959646-742c3a14ebf7?w=400',
+                    images: ['https://images.unsplash.com/photo-1518831959646-742c3a14ebf7?w=500'],
+                    total_stock: 25,
+                    average_rating: 4.8,
+                    review_count: 67,
+                    description: 'Beautiful dress for special occasions and parties.',
+                    sizes: [
+                        { size: '4T', stock: 5 },
+                        { size: '5T', stock: 8 },
+                        { size: '6', stock: 8 },
+                        { size: '8', stock: 4 }
+                    ],
+                    colors: [
+                        { name: 'pink' },
+                        { name: 'purple' },
+                        { name: 'white' },
+                        { name: 'blue' }
+                    ],
+                    created_date: new Date(Date.now() - 1100000000).toISOString()
+                },
+                {
+                    id: 33,
+                    name: 'Kids Sneakers',
+                    title: 'Comfortable Kids Sneakers',
+                    price: 1599,
+                    sale_price: 1299,
+                    is_featured: true,
+                    is_active: true,
+                    category_id: 1,
+                    category: 'fashion',
+                    sub_category: 'shoes',
+                    gender: 'kids',
+                    image_url: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=400',
+                    images: ['https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=500'],
+                    total_stock: 35,
+                    average_rating: 4.7,
+                    review_count: 89,
+                    description: 'Durable and comfortable sneakers for active children.',
+                    sizes: [
+                        { size: '10', stock: 8 },
+                        { size: '11', stock: 10 },
+                        { size: '12', stock: 12 },
+                        { size: '13', stock: 5 }
+                    ],
+                    colors: [
+                        { name: 'white' },
+                        { name: 'pink' },
+                        { name: 'blue' },
+                        { name: 'black' }
+                    ],
+                    created_date: new Date(Date.now() - 1200000000).toISOString()
+                },
+                {
+                    id: 34,
+                    name: 'Kids Backpack',
+                    title: 'Colorful School Backpack',
+                    price: 999,
+                    sale_price: null,
+                    is_featured: false,
+                    is_active: true,
+                    category_id: 6,
+                    category: 'accessories',
+                    sub_category: 'bags',
+                    gender: 'kids',
+                    image_url: 'https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=400',
+                    images: ['https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=500'],
+                    total_stock: 50,
+                    average_rating: 4.5,
+                    review_count: 72,
+                    description: 'Fun and functional backpack perfect for school and adventures.',
+                    sizes: [],
+                    colors: [
+                        { name: 'rainbow' },
+                        { name: 'pink' },
+                        { name: 'blue' },
+                        { name: 'green' }
+                    ],
+                    created_date: new Date(Date.now() - 1300000000).toISOString()
                 }
             ];
             localStorage.setItem('mockProducts', JSON.stringify(products));

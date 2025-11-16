@@ -341,83 +341,117 @@ export default function Checkout() {
                                             Add New Address
                                         </Button>
                                     </DialogTrigger>
-                                    <DialogContent className="max-w-2xl">
+                                    <DialogContent>
                                         <DialogHeader>
                                             <DialogTitle>Add New Address</DialogTitle>
                                         </DialogHeader>
-                                        <div className="grid grid-cols-2 gap-4 mt-4">
-                                            <div>
-                                                <Label>Full Name *</Label>
-                                                <Input
-                                                    value={newAddress.full_name}
-                                                    onChange={(e) => setNewAddress({ ...newAddress, full_name: e.target.value })}
-                                                    placeholder="John Doe"
-                                                />
-                                            </div>
-                                            <div>
-                                                <Label>Phone *</Label>
-                                                <Input
-                                                    value={newAddress.phone}
-                                                    onChange={(e) => setNewAddress({ ...newAddress, phone: e.target.value })}
-                                                    placeholder="+91 1234567890"
-                                                />
-                                            </div>
-                                            <div className="col-span-2">
-                                                <Label>Address Line 1 *</Label>
-                                                <Input
-                                                    value={newAddress.address_line1}
-                                                    onChange={(e) => setNewAddress({ ...newAddress, address_line1: e.target.value })}
-                                                    placeholder="House/Flat No, Street"
-                                                />
-                                            </div>
-                                            <div className="col-span-2">
-                                                <Label>Address Line 2</Label>
-                                                <Input
-                                                    value={newAddress.address_line2}
-                                                    onChange={(e) => setNewAddress({ ...newAddress, address_line2: e.target.value })}
-                                                    placeholder="Landmark, Area"
-                                                />
-                                            </div>
-                                            <div>
-                                                <Label>City *</Label>
-                                                <Input
-                                                    value={newAddress.city}
-                                                    onChange={(e) => setNewAddress({ ...newAddress, city: e.target.value })}
-                                                    placeholder="Mumbai"
-                                                />
-                                            </div>
-                                            <div>
-                                                <Label>State *</Label>
-                                                <Input
-                                                    value={newAddress.state}
-                                                    onChange={(e) => setNewAddress({ ...newAddress, state: e.target.value })}
-                                                    placeholder="Maharashtra"
-                                                />
-                                            </div>
-                                            <div>
-                                                <Label>Postal Code *</Label>
-                                                <Input
-                                                    value={newAddress.postal_code}
-                                                    onChange={(e) => setNewAddress({ ...newAddress, postal_code: e.target.value })}
-                                                    placeholder="400001"
-                                                />
-                                            </div>
-                                            <div>
-                                                <Label>Address Type</Label>
-                                                <select
-                                                    value={newAddress.address_type}
-                                                    onChange={(e) => setNewAddress({ ...newAddress, address_type: e.target.value })}
-                                                    className="w-full border rounded-md px-3 py-2"
-                                                >
-                                                    <option value="home">Home</option>
-                                                    <option value="office">Office</option>
-                                                    <option value="other">Other</option>
-                                                </select>
+
+                                        <div className="flex-1 overflow-y-auto px-6 py-6">
+                                            <div className="space-y-6">
+                                                {/* Personal Information Section */}
+                                                <div className="space-y-4">
+                                                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                                        <div>
+                                                            <Label className="text-sm font-medium text-gray-700">Full Name *</Label>
+                                                            <Input
+                                                                value={newAddress.full_name}
+                                                                onChange={(e) => setNewAddress({ ...newAddress, full_name: e.target.value })}
+                                                                placeholder="John Doe"
+                                                                className="mt-1"
+                                                            />
+                                                        </div>
+                                                        <div>
+                                                            <Label className="text-sm font-medium text-gray-700">Phone Number *</Label>
+                                                            <Input
+                                                                value={newAddress.phone}
+                                                                onChange={(e) => setNewAddress({ ...newAddress, phone: e.target.value })}
+                                                                placeholder="+91 1234567890"
+                                                                className="mt-1"
+                                                            />
+                                                        </div>
+                                                    </div>
+                                                    <div>
+                                                        <Label className="text-sm font-medium text-gray-700 block mb-3">Address Type</Label>
+                                                        <select
+                                                            value={newAddress.address_type}
+                                                            onChange={(e) => setNewAddress({ ...newAddress, address_type: e.target.value })}
+                                                            className="w-full border border-gray-300 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-gray-500 focus:border-gray-500"
+                                                        >
+                                                            <option value="home">Home</option>
+                                                            <option value="office">Office</option>
+                                                            <option value="other">Other</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+
+                                                {/* Address Information Section */}
+                                                <div className="space-y-4">
+                                                    <div>
+                                                        <Label className="text-sm font-medium text-gray-700">Address Line 1 *</Label>
+                                                        <Input
+                                                            value={newAddress.address_line1}
+                                                            onChange={(e) => setNewAddress({ ...newAddress, address_line1: e.target.value })}
+                                                            placeholder="House/Flat No, Street"
+                                                            className="mt-1"
+                                                        />
+                                                    </div>
+                                                    <div>
+                                                        <Label className="text-sm font-medium text-gray-700">Address Line 2</Label>
+                                                        <Input
+                                                            value={newAddress.address_line2}
+                                                            onChange={(e) => setNewAddress({ ...newAddress, address_line2: e.target.value })}
+                                                            placeholder="Landmark, Area"
+                                                            className="mt-1"
+                                                        />
+                                                    </div>
+                                                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                                                        <div>
+                                                            <Label className="text-sm font-medium text-gray-700">City *</Label>
+                                                            <Input
+                                                                value={newAddress.city}
+                                                                onChange={(e) => setNewAddress({ ...newAddress, city: e.target.value })}
+                                                                placeholder="Mumbai"
+                                                                className="mt-1"
+                                                            />
+                                                        </div>
+                                                        <div>
+                                                            <Label className="text-sm font-medium text-gray-700">State *</Label>
+                                                            <Input
+                                                                value={newAddress.state}
+                                                                onChange={(e) => setNewAddress({ ...newAddress, state: e.target.value })}
+                                                                placeholder="Maharashtra"
+                                                                className="mt-1"
+                                                            />
+                                                        </div>
+                                                        <div>
+                                                            <Label className="text-sm font-medium text-gray-700">Postal Code *</Label>
+                                                            <Input
+                                                                value={newAddress.postal_code}
+                                                                onChange={(e) => setNewAddress({ ...newAddress, postal_code: e.target.value })}
+                                                                placeholder="400001"
+                                                                className="mt-1"
+                                                            />
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
-                                        <Button onClick={handleAddAddress} className="w-full mt-4">
-                                            Save Address
-                                        </Button>
+
+                                        <div className="flex gap-3 px-6 py-4 border-t border-gray-200 bg-gray-50">
+                                            <Button
+                                                variant="outline"
+                                                onClick={() => setAddressDialogOpen(false)}
+                                                className="flex-1"
+                                            >
+                                                Cancel
+                                            </Button>
+                                            <Button
+                                                onClick={handleAddAddress}
+                                                className="flex-1 bg-gray-900 hover:bg-gray-800"
+                                            >
+                                                Save Address
+                                            </Button>
+                                        </div>
                                     </DialogContent>
                                 </Dialog>
                             </CardContent>

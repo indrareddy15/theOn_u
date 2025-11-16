@@ -101,10 +101,10 @@ export const DialogContent = ({ children, className = '' }) => {
             {/* Dialog */}
             <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
                 <div
-                    className={`relative bg-white border border-gray-200 rounded-lg shadow-lg w-full max-h-[90vh] overflow-hidden dialog-content-enter dialog-content-enter-active ${className}`}
+                    className={`relative bg-white rounded-lg shadow-xl w-full max-w-2xl mx-auto overflow-hidden dialog-content-enter dialog-content-enter-active ${className}`}
                     onClick={(e) => e.stopPropagation()}
                 >
-                    <div className="max-h-[90vh]">
+                    <div className="flex flex-col max-h-[90vh] overflow-hidden">
                         {children}
                     </div>
                 </div>
@@ -117,7 +117,7 @@ export const DialogHeader = ({ children, className = '', showCloseButton = true 
     const { setIsOpen } = useContext(DialogContext);
 
     return (
-        <div className={`flex items-center justify-between p-6 border-b border-gray-200 ${className}`}>
+        <div className={`flex items-center justify-between px-6 py-4 border-b border-gray-200 ${className}`}>
             <div className="flex flex-col space-y-1.5 flex-1">
                 {children}
             </div>
@@ -125,7 +125,7 @@ export const DialogHeader = ({ children, className = '', showCloseButton = true 
                 <button
                     type="button"
                     onClick={() => setIsOpen(false)}
-                    className="ml-4 rounded-lg p-1.5 text-gray-400 hover:text-gray-600 hover:bg-gray-100 transition-colors"
+                    className="ml-4 rounded-lg p-1.5 text-gray-400 hover:text-gray-600 hover:bg-gray-100 transition-colors flex-shrink-0"
                     aria-label="Close dialog"
                 >
                     <X className="h-4 w-4" />

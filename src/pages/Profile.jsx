@@ -152,6 +152,20 @@ export default function Profile() {
 
     const totalSpent = orders.reduce((sum, order) => sum + (order.total_amount || 0), 0);
 
+    const getStatusColor = (status) => {
+        const colors = {
+            pending: 'bg-yellow-100 text-yellow-800',
+            processing: 'bg-blue-100 text-blue-800',
+            packed: 'bg-purple-100 text-purple-800',
+            shipped: 'bg-indigo-100 text-indigo-800',
+            out_for_delivery: 'bg-cyan-100 text-cyan-800',
+            delivered: 'bg-green-100 text-green-800',
+            cancelled: 'bg-red-100 text-red-800',
+            returned: 'bg-gray-100 text-gray-800'
+        };
+        return colors[status] || 'bg-gray-100 text-gray-800';
+    };
+
     if (loading) {
         return (
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
@@ -281,89 +295,122 @@ export default function Profile() {
                                             Add Address
                                         </Button>
                                     </DialogTrigger>
-                                    <DialogContent className="max-w-2xl">
+                                    <DialogContent>
                                         <DialogHeader>
                                             <DialogTitle>Add New Address</DialogTitle>
                                         </DialogHeader>
-                                        <div className="grid grid-cols-2 gap-4 mt-4">
-                                            <div className="col-span-2">
-                                                <Label>Full Name *</Label>
-                                                <Input
-                                                    value={newAddress.full_name}
-                                                    onChange={(e) => setNewAddress({ ...newAddress, full_name: e.target.value })}
-                                                    placeholder="John Doe"
-                                                />
-                                            </div>
-                                            <div>
-                                                <Label>Phone Number *</Label>
-                                                <Input
-                                                    value={newAddress.phone}
-                                                    onChange={(e) => setNewAddress({ ...newAddress, phone: e.target.value })}
-                                                    placeholder="1234567890"
-                                                />
-                                            </div>
-                                            <div>
-                                                <Label>Address Type</Label>
-                                                <RadioGroup
-                                                    value={newAddress.address_type}
-                                                    onValueChange={(val) => setNewAddress({ ...newAddress, address_type: val })}
-                                                >
-                                                    <div className="flex gap-4">
-                                                        <div className="flex items-center">
-                                                            <RadioGroupItem value="home" id="home" />
-                                                            <Label htmlFor="home" className="ml-2">Home</Label>
+
+                                        <div className="flex-1 overflow-y-auto px-6 py-6">
+                                            <div className="space-y-6">
+                                                {/* Personal Information Section */}
+                                                <div className="space-y-4">
+                                                    <div>
+                                                        <Label className="text-sm font-medium text-gray-700">Full Name *</Label>
+                                                        <Input
+                                                            value={newAddress.full_name}
+                                                            onChange={(e) => setNewAddress({ ...newAddress, full_name: e.target.value })}
+                                                            placeholder="John Doe"
+                                                            className="mt-1"
+                                                        />
+                                                    </div>
+                                                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                                        <div>
+                                                            <Label className="text-sm font-medium text-gray-700">Phone Number *</Label>
+                                                            <Input
+                                                                value={newAddress.phone}
+                                                                onChange={(e) => setNewAddress({ ...newAddress, phone: e.target.value })}
+                                                                placeholder="1234567890"
+                                                                className="mt-1"
+                                                            />
                                                         </div>
-                                                        <div className="flex items-center">
-                                                            <RadioGroupItem value="office" id="office" />
-                                                            <Label htmlFor="office" className="ml-2">Office</Label>
+                                                        <div>
+                                                            <Label className="text-sm font-medium text-gray-700 block mb-3">Address Type</Label>
+                                                            <RadioGroup
+                                                                value={newAddress.address_type}
+                                                                onValueChange={(val) => setNewAddress({ ...newAddress, address_type: val })}
+                                                                className="flex gap-6"
+                                                            >
+                                                                <div className="flex items-center space-x-2">
+                                                                    <RadioGroupItem value="home" id="home" />
+                                                                    <Label htmlFor="home" className="text-sm font-normal">Home</Label>
+                                                                </div>
+                                                                <div className="flex items-center space-x-2">
+                                                                    <RadioGroupItem value="office" id="office" />
+                                                                    <Label htmlFor="office" className="text-sm font-normal">Office</Label>
+                                                                </div>
+                                                            </RadioGroup>
                                                         </div>
                                                     </div>
-                                                </RadioGroup>
-                                            </div>
-                                            <div className="col-span-2">
-                                                <Label>Address Line 1 *</Label>
-                                                <Input
-                                                    value={newAddress.address_line1}
-                                                    onChange={(e) => setNewAddress({ ...newAddress, address_line1: e.target.value })}
-                                                    placeholder="House/Flat No., Building Name"
-                                                />
-                                            </div>
-                                            <div className="col-span-2">
-                                                <Label>Address Line 2</Label>
-                                                <Input
-                                                    value={newAddress.address_line2}
-                                                    onChange={(e) => setNewAddress({ ...newAddress, address_line2: e.target.value })}
-                                                    placeholder="Street, Area, Landmark"
-                                                />
-                                            </div>
-                                            <div>
-                                                <Label>City *</Label>
-                                                <Input
-                                                    value={newAddress.city}
-                                                    onChange={(e) => setNewAddress({ ...newAddress, city: e.target.value })}
-                                                    placeholder="Mumbai"
-                                                />
-                                            </div>
-                                            <div>
-                                                <Label>State *</Label>
-                                                <Input
-                                                    value={newAddress.state}
-                                                    onChange={(e) => setNewAddress({ ...newAddress, state: e.target.value })}
-                                                    placeholder="Maharashtra"
-                                                />
-                                            </div>
-                                            <div>
-                                                <Label>Postal Code *</Label>
-                                                <Input
-                                                    value={newAddress.postal_code}
-                                                    onChange={(e) => setNewAddress({ ...newAddress, postal_code: e.target.value })}
-                                                    placeholder="400001"
-                                                />
+                                                </div>
+
+                                                {/* Address Information Section */}
+                                                <div className="space-y-4">
+                                                    <div>
+                                                        <Label className="text-sm font-medium text-gray-700">Address Line 1 *</Label>
+                                                        <Input
+                                                            value={newAddress.address_line1}
+                                                            onChange={(e) => setNewAddress({ ...newAddress, address_line1: e.target.value })}
+                                                            placeholder="House/Flat No., Building Name"
+                                                            className="mt-1"
+                                                        />
+                                                    </div>
+                                                    <div>
+                                                        <Label className="text-sm font-medium text-gray-700">Address Line 2</Label>
+                                                        <Input
+                                                            value={newAddress.address_line2}
+                                                            onChange={(e) => setNewAddress({ ...newAddress, address_line2: e.target.value })}
+                                                            placeholder="Street, Area, Landmark"
+                                                            className="mt-1"
+                                                        />
+                                                    </div>
+                                                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                                                        <div>
+                                                            <Label className="text-sm font-medium text-gray-700">City *</Label>
+                                                            <Input
+                                                                value={newAddress.city}
+                                                                onChange={(e) => setNewAddress({ ...newAddress, city: e.target.value })}
+                                                                placeholder="Mumbai"
+                                                                className="mt-1"
+                                                            />
+                                                        </div>
+                                                        <div>
+                                                            <Label className="text-sm font-medium text-gray-700">State *</Label>
+                                                            <Input
+                                                                value={newAddress.state}
+                                                                onChange={(e) => setNewAddress({ ...newAddress, state: e.target.value })}
+                                                                placeholder="Maharashtra"
+                                                                className="mt-1"
+                                                            />
+                                                        </div>
+                                                        <div>
+                                                            <Label className="text-sm font-medium text-gray-700">Postal Code *</Label>
+                                                            <Input
+                                                                value={newAddress.postal_code}
+                                                                onChange={(e) => setNewAddress({ ...newAddress, postal_code: e.target.value })}
+                                                                placeholder="400001"
+                                                                className="mt-1"
+                                                            />
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
-                                        <Button onClick={handleAddAddress} className="w-full mt-4">
-                                            Save Address
-                                        </Button>
+
+                                        <div className="flex gap-3 px-6 py-4 border-t border-gray-200 bg-gray-50">
+                                            <Button
+                                                variant="outline"
+                                                onClick={() => setAddressDialogOpen(false)}
+                                                className="flex-1"
+                                            >
+                                                Cancel
+                                            </Button>
+                                            <Button
+                                                onClick={handleAddAddress}
+                                                className="flex-1 bg-gray-900 hover:bg-gray-800"
+                                            >
+                                                Save Address
+                                            </Button>
+                                        </div>
                                     </DialogContent>
                                 </Dialog>
                             </CardHeader>
@@ -466,7 +513,7 @@ export default function Profile() {
                                                         <p className="font-semibold text-gray-900">
                                                             ₹{order.total_amount ? order.total_amount.toLocaleString() : '0'}
                                                         </p>
-                                                        <Badge variant="secondary" className="capitalize text-xs">
+                                                        <Badge className={`capitalize text-xs ${getStatusColor(order.order_status)}`}>
                                                             {order.order_status ? order.order_status.replace('_', ' ') : 'N/A'}
                                                         </Badge>
                                                     </div>

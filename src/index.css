@@ -32,7 +32,7 @@
   }
 
   .btn-secondary {
-    @apply bg-gray-100 text-gray-900 px-4 py-2 rounded-md hover:bg-gray-200 transition-colors;
+    @apply bg-gray-200 text-gray-900 px-4 py-2 rounded-md hover:bg-gray-300 transition-colors;
   }
 
   /* Custom card styles */
@@ -43,6 +43,28 @@
   /* Custom input styles */
   .input {
     @apply w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-500 focus:border-gray-500;
+  }
+
+  /* High contrast text utilities */
+  .text-high-contrast {
+    @apply text-gray-900;
+  }
+
+  .text-muted-high-contrast {
+    @apply text-gray-700;
+  }
+
+  /* Badge utilities for better visibility */
+  .badge-high-contrast {
+    @apply bg-gray-900 text-white;
+  }
+
+  .badge-danger-high-contrast {
+    @apply bg-red-600 text-white;
+  }
+
+  .badge-success-high-contrast {
+    @apply bg-green-600 text-white;
   }
 }
 
@@ -73,4 +95,19 @@
 
 .animate-slideUp {
   animation: slideUp 0.4s ease-out;
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fadeInDown {
+  animation: fadeInDown 0.3s ease-out;
 }

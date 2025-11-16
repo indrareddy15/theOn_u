@@ -1,11 +1,29 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { base44 } from "@/api/base44Client";
 import { useLocation } from "react-router-dom";
-import { Filter, SlidersHorizontal, X, ChevronDown, ChevronUp } from "lucide-react";
+import {
+  Filter,
+  SlidersHorizontal,
+  X,
+  ChevronDown,
+  ChevronUp,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import {
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
 import { Slider } from "@/components/ui/slider";
@@ -16,33 +34,52 @@ import { Badge } from "@/components/ui/badge";
 export default function Shop() {
   const location = useLocation();
   const urlParams = new URLSearchParams(location.search);
-  const initialCategory = urlParams.get('category');
-  const initialSearch = urlParams.get('q');
+  const initialCategory = urlParams.get("category");
+  const initialSubCategory = urlParams.get("subCategory");
+  const initialGender = urlParams.get("gender");
+  const initialSearch = urlParams.get("q");
 
   // Sort options mapping for display
   const sortOptions = {
-    '-created_date': 'Newest First',
-    'created_date': 'Oldest First',
-    'price': 'Price: Low to High',
-    '-price': 'Price: High to Low',
-    '-average_rating': 'Highest Rated'
+    "-created_date": "Newest First",
+    created_date: "Oldest First",
+    price: "Price: Low to High",
+    "-price": "Price: High to Low",
+    "-average_rating": "Highest Rated",
   };
 
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [searchQuery, setSearchQuery] = useState(initialSearch || '');
+  const [searchQuery, setSearchQuery] = useState(initialSearch || "");
   const [filters, setFilters] = useState({
-    genders: [],
+    genders: initialGender ? [initialGender] : [],
     categories: initialCategory ? [initialCategory] : [],
-    subCategories: [],
+    subCategories: initialSubCategory ? [initialSubCategory] : [],
     sizes: [],
     specialCategories: [],
     colors: [],
     hasDiscount: false,
     priceRange: [0, 50000],
-    sortBy: '-created_date'
+    sortBy: "-created_date",
   });
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
+
+  // Reinitialize filters when URL parameters change
+  useEffect(() => {
+    const newUrlParams = new URLSearchParams(location.search);
+    const newCategory = newUrlParams.get("category");
+    const newSubCategory = newUrlParams.get("subCategory");
+    const newGender = newUrlParams.get("gender");
+    const newSearch = newUrlParams.get("q");
+
+    setSearchQuery(newSearch || "");
+    setFilters((prev) => ({
+      ...prev,
+      genders: newGender ? [newGender] : [],
+      categories: newCategory ? [newCategory] : [],
+      subCategories: newSubCategory ? [newSubCategory] : [],
+    }));
+  }, [location.search]);
   const [showAllColors, setShowAllColors] = useState(false);
   const [expandedSections, setExpandedSections] = useState({
     gender: true,
@@ -52,7 +89,7 @@ export default function Shop() {
     special: true,
     discount: true,
     price: true,
-    colors: true
+    colors: true,
   });
 
   // Calculate available filter options with counts
@@ -62,16 +99,20 @@ export default function Shop() {
     subCategories: {},
     sizes: {},
     specialCategories: {},
-    colors: {}
+    colors: {},
   });
 
   const loadProducts = useCallback(async () => {
     try {
       setLoading(true);
-      const allProducts = await base44.entities.Product.filter({ is_active: true }, filters.sortBy, 500);
+      const allProducts = await base44.entities.Product.filter(
+        { is_active: true },
+        filters.sortBy,
+        500
+      );
       setProducts(allProducts);
     } catch (error) {
-      console.error('Error loading products:', error);
+      console.error("Error loading products:", error);
     } finally {
       setLoading(false);
     }
@@ -84,60 +125,87 @@ export default function Shop() {
       subCategories: {},
       sizes: {},
       specialCategories: { bestSeller: 0, topPicks: 0 },
-      colors: {}
+      colors: {},
     };
 
     // Calculate counts based on current filters (excluding the category we're counting)
     const getFilteredProducts = (excludeFilter) => {
-      return products.filter(product => {
+      return products.filter((product) => {
         // Apply all filters except the one we're counting
-        if (excludeFilter !== 'gender' && filters.genders.length > 0) {
+        if (excludeFilter !== "gender" && filters.genders.length > 0) {
           if (!filters.genders.includes(product.gender)) return false;
         }
-        if (excludeFilter !== 'category' && filters.categories.length > 0) {
+        if (excludeFilter !== "category" && filters.categories.length > 0) {
           if (!filters.categories.includes(product.category)) return false;
         }
-        if (excludeFilter !== 'subCategory' && filters.subCategories.length > 0) {
-          if (!filters.subCategories.includes(product.sub_category)) return false;
+        if (
+          excludeFilter !== "subCategory" &&
+          filters.subCategories.length > 0
+        ) {
+          if (!filters.subCategories.includes(product.sub_category))
+            return false;
         }
-        if (excludeFilter !== 'size' && filters.sizes.length > 0) {
-          if (!product.sizes?.some(s => filters.sizes.includes(s.size) && s.stock > 0)) return false;
+        if (excludeFilter !== "size" && filters.sizes.length > 0) {
+          if (
+            !product.sizes?.some(
+              (s) => filters.sizes.includes(s.size) && s.stock > 0
+            )
+          )
+            return false;
         }
-        if (excludeFilter !== 'special' && filters.specialCategories.length > 0) {
-          if (filters.specialCategories.includes('bestSeller') && !product.is_featured) return false;
-          if (filters.specialCategories.includes('topPicks') && (product.average_rating || 0) < 4) return false;
+        if (
+          excludeFilter !== "special" &&
+          filters.specialCategories.length > 0
+        ) {
+          if (
+            filters.specialCategories.includes("bestSeller") &&
+            !product.is_featured
+          )
+            return false;
+          if (
+            filters.specialCategories.includes("topPicks") &&
+            (product.average_rating || 0) < 4
+          )
+            return false;
         }
-        if (excludeFilter !== 'color' && filters.colors.length > 0) {
-          if (!product.colors?.some(c => filters.colors.includes(c.name))) return false;
+        if (excludeFilter !== "color" && filters.colors.length > 0) {
+          if (!product.colors?.some((c) => filters.colors.includes(c.name)))
+            return false;
         }
         if (filters.hasDiscount) {
           if (!product.sale_price) return false;
         }
         const price = product.sale_price || product.price;
-        if (price < filters.priceRange[0] || price > filters.priceRange[1]) return false;
+        if (price < filters.priceRange[0] || price > filters.priceRange[1])
+          return false;
 
         return true;
       });
     };
 
     // Count genders
-    getFilteredProducts('gender').forEach(p => {
-      if (p.gender) counts.genders[p.gender] = (counts.genders[p.gender] || 0) + 1;
+    getFilteredProducts("gender").forEach((p) => {
+      if (p.gender)
+        counts.genders[p.gender] = (counts.genders[p.gender] || 0) + 1;
     });
 
     // Count categories
-    getFilteredProducts('category').forEach(p => {
-      if (p.category) counts.categories[p.category] = (counts.categories[p.category] || 0) + 1;
+    getFilteredProducts("category").forEach((p) => {
+      if (p.category)
+        counts.categories[p.category] =
+          (counts.categories[p.category] || 0) + 1;
     });
 
     // Count subcategories
-    getFilteredProducts('subCategory').forEach(p => {
-      if (p.sub_category) counts.subCategories[p.sub_category] = (counts.subCategories[p.sub_category] || 0) + 1;
+    getFilteredProducts("subCategory").forEach((p) => {
+      if (p.sub_category)
+        counts.subCategories[p.sub_category] =
+          (counts.subCategories[p.sub_category] || 0) + 1;
     });
 
     // Count sizes
-    getFilteredProducts('size').forEach(p => {
-      p.sizes?.forEach(s => {
+    getFilteredProducts("size").forEach((p) => {
+      p.sizes?.forEach((s) => {
         if (s.stock > 0) {
           counts.sizes[s.size] = (counts.sizes[s.size] || 0) + 1;
         }
@@ -145,14 +213,14 @@ export default function Shop() {
     });
 
     // Count special categories
-    getFilteredProducts('special').forEach(p => {
+    getFilteredProducts("special").forEach((p) => {
       if (p.is_featured) counts.specialCategories.bestSeller++;
       if ((p.average_rating || 0) >= 4) counts.specialCategories.topPicks++;
     });
 
     // Count colors
-    getFilteredProducts('color').forEach(p => {
-      p.colors?.forEach(c => {
+    getFilteredProducts("color").forEach((p) => {
+      p.colors?.forEach((c) => {
         counts.colors[c.name] = (counts.colors[c.name] || 0) + 1;
       });
     });
@@ -169,7 +237,7 @@ export default function Shop() {
   }, [calculateFilterCounts]);
 
   const getFilteredProducts = () => {
-    return products.filter(product => {
+    return products.filter((product) => {
       // Search filter
       if (searchQuery && searchQuery.trim()) {
         const query = searchQuery.toLowerCase();
@@ -183,35 +251,56 @@ export default function Shop() {
       }
 
       // Gender filter
-      if (filters.genders.length > 0 && !filters.genders.includes(product.gender)) {
+      if (
+        filters.genders.length > 0 &&
+        !filters.genders.includes(product.gender)
+      ) {
         return false;
       }
 
       // Category filter
-      if (filters.categories.length > 0 && !filters.categories.includes(product.category)) {
+      if (
+        filters.categories.length > 0 &&
+        !filters.categories.includes(product.category)
+      ) {
         return false;
       }
 
       // Subcategory filter
-      if (filters.subCategories.length > 0 && !filters.subCategories.includes(product.sub_category)) {
+      if (
+        filters.subCategories.length > 0 &&
+        !filters.subCategories.includes(product.sub_category)
+      ) {
         return false;
       }
 
       // Size filter
       if (filters.sizes.length > 0) {
-        const hasSize = product.sizes?.some(s => filters.sizes.includes(s.size) && s.stock > 0);
+        const hasSize = product.sizes?.some(
+          (s) => filters.sizes.includes(s.size) && s.stock > 0
+        );
         if (!hasSize) return false;
       }
 
       // Special categories filter
       if (filters.specialCategories.length > 0) {
-        if (filters.specialCategories.includes('bestSeller') && !product.is_featured) return false;
-        if (filters.specialCategories.includes('topPicks') && (product.average_rating || 0) < 4) return false;
+        if (
+          filters.specialCategories.includes("bestSeller") &&
+          !product.is_featured
+        )
+          return false;
+        if (
+          filters.specialCategories.includes("topPicks") &&
+          (product.average_rating || 0) < 4
+        )
+          return false;
       }
 
       // Color filter
       if (filters.colors.length > 0) {
-        const hasColor = product.colors?.some(c => filters.colors.includes(c.name));
+        const hasColor = product.colors?.some((c) =>
+          filters.colors.includes(c.name)
+        );
         if (!hasColor) return false;
       }
 
@@ -233,16 +322,16 @@ export default function Shop() {
   const filteredProducts = getFilteredProducts();
 
   const toggleFilter = (filterType, value) => {
-    setFilters(prev => ({
+    setFilters((prev) => ({
       ...prev,
       [filterType]: prev[filterType].includes(value)
-        ? prev[filterType].filter(v => v !== value)
-        : [...prev[filterType], value]
+        ? prev[filterType].filter((v) => v !== value)
+        : [...prev[filterType], value],
     }));
   };
 
   const toggleSection = (section) => {
-    setExpandedSections(prev => ({ ...prev, [section]: !prev[section] }));
+    setExpandedSections((prev) => ({ ...prev, [section]: !prev[section] }));
   };
 
   const clearFilters = () => {
@@ -255,7 +344,7 @@ export default function Shop() {
       colors: [],
       hasDiscount: false,
       priceRange: [0, 50000],
-      sortBy: filters.sortBy
+      sortBy: filters.sortBy,
     });
   };
 
@@ -278,7 +367,11 @@ export default function Shop() {
           className="flex items-center justify-between w-full mb-3"
         >
           <h4 className="font-semibold text-gray-900">{title}</h4>
-          {isExpanded ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
+          {isExpanded ? (
+            <ChevronUp className="w-4 h-4" />
+          ) : (
+            <ChevronDown className="w-4 h-4" />
+          )}
         </button>
         {isExpanded && (
           <div className="space-y-2">
@@ -294,7 +387,7 @@ export default function Shop() {
                     htmlFor={`${filterType}-${key}`}
                     className="ml-2 text-sm text-gray-700 capitalize cursor-pointer"
                   >
-                    {key.replace('_', ' ')}
+                    {key.replace("_", " ")}
                   </Label>
                 </div>
                 <span className="text-xs text-gray-500">({count})</span>
@@ -307,8 +400,12 @@ export default function Shop() {
   };
 
   const FilterContent = () => {
-    const colorEntries = Object.entries(filterCounts.colors).sort((a, b) => b[1] - a[1]);
-    const displayedColors = showAllColors ? colorEntries : colorEntries.slice(0, 5);
+    const colorEntries = Object.entries(filterCounts.colors).sort(
+      (a, b) => b[1] - a[1]
+    );
+    const displayedColors = showAllColors
+      ? colorEntries
+      : colorEntries.slice(0, 5);
 
     return (
       <div className="space-y-6">
@@ -316,9 +413,7 @@ export default function Shop() {
           <h3 className="font-semibold text-gray-900 flex items-center gap-2">
             <Filter className="w-5 h-5" />
             Filters
-            {activeFiltersCount > 0 && (
-              <Badge>{activeFiltersCount}</Badge>
-            )}
+            {activeFiltersCount > 0 && <Badge>{activeFiltersCount}</Badge>}
           </h3>
           {activeFiltersCount > 0 && (
             <Button variant="ghost" size="sm" onClick={clearFilters}>
@@ -361,11 +456,15 @@ export default function Shop() {
         {Object.keys(filterCounts.sizes).length > 0 && (
           <div className="border-b pb-4">
             <button
-              onClick={() => toggleSection('sizes')}
+              onClick={() => toggleSection("sizes")}
               className="flex items-center justify-between w-full mb-3"
             >
               <h4 className="font-semibold text-gray-900">Size</h4>
-              {expandedSections.sizes ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
+              {expandedSections.sizes ? (
+                <ChevronUp className="w-4 h-4" />
+              ) : (
+                <ChevronDown className="w-4 h-4" />
+              )}
             </button>
             {expandedSections.sizes && (
               <div className="grid grid-cols-3 gap-2">
@@ -376,17 +475,19 @@ export default function Shop() {
                     const bIsNum = !isNaN(b[0]);
                     if (aIsNum && !bIsNum) return 1;
                     if (!aIsNum && bIsNum) return -1;
-                    if (aIsNum && bIsNum) return parseInt(a[0]) - parseInt(b[0]);
+                    if (aIsNum && bIsNum)
+                      return parseInt(a[0]) - parseInt(b[0]);
                     return a[0].localeCompare(b[0]);
                   })
                   .map(([size, count]) => (
                     <button
                       key={size}
-                      onClick={() => toggleFilter('sizes', size)}
-                      className={`px-3 py-2 border rounded-lg text-sm font-medium transition-colors ${filters.sizes.includes(size)
-                        ? 'border-gray-900 bg-gray-900 text-white'
-                        : 'border-gray-200 hover:border-gray-400'
-                        }`}
+                      onClick={() => toggleFilter("sizes", size)}
+                      className={`px-3 py-2 border rounded-lg text-sm font-medium transition-colors ${
+                        filters.sizes.includes(size)
+                          ? "border-gray-900 bg-gray-900 text-white"
+                          : "border-gray-200 hover:border-gray-400"
+                      }`}
                     >
                       <div>{size}</div>
                       <div className="text-xs opacity-70">({count})</div>
@@ -398,14 +499,19 @@ export default function Shop() {
         )}
 
         {/* Special Category */}
-        {(filterCounts.specialCategories.bestSeller > 0 || filterCounts.specialCategories.topPicks > 0) && (
+        {(filterCounts.specialCategories.bestSeller > 0 ||
+          filterCounts.specialCategories.topPicks > 0) && (
           <div className="border-b pb-4">
             <button
-              onClick={() => toggleSection('special')}
+              onClick={() => toggleSection("special")}
               className="flex items-center justify-between w-full mb-3"
             >
               <h4 className="font-semibold text-gray-900">Special Category</h4>
-              {expandedSections.special ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
+              {expandedSections.special ? (
+                <ChevronUp className="w-4 h-4" />
+              ) : (
+                <ChevronDown className="w-4 h-4" />
+              )}
             </button>
             {expandedSections.special && (
               <div className="space-y-2">
@@ -414,14 +520,23 @@ export default function Shop() {
                     <div className="flex items-center">
                       <Checkbox
                         id="special-bestSeller"
-                        checked={filters.specialCategories.includes('bestSeller')}
-                        onCheckedChange={() => toggleFilter('specialCategories', 'bestSeller')}
+                        checked={filters.specialCategories.includes(
+                          "bestSeller"
+                        )}
+                        onCheckedChange={() =>
+                          toggleFilter("specialCategories", "bestSeller")
+                        }
                       />
-                      <Label htmlFor="special-bestSeller" className="ml-2 text-sm text-gray-700 cursor-pointer">
+                      <Label
+                        htmlFor="special-bestSeller"
+                        className="ml-2 text-sm text-gray-700 cursor-pointer"
+                      >
                         Best Seller
                       </Label>
                     </div>
-                    <span className="text-xs text-gray-500">({filterCounts.specialCategories.bestSeller})</span>
+                    <span className="text-xs text-gray-500">
+                      ({filterCounts.specialCategories.bestSeller})
+                    </span>
                   </div>
                 )}
                 {filterCounts.specialCategories.topPicks > 0 && (
@@ -429,14 +544,21 @@ export default function Shop() {
                     <div className="flex items-center">
                       <Checkbox
                         id="special-topPicks"
-                        checked={filters.specialCategories.includes('topPicks')}
-                        onCheckedChange={() => toggleFilter('specialCategories', 'topPicks')}
+                        checked={filters.specialCategories.includes("topPicks")}
+                        onCheckedChange={() =>
+                          toggleFilter("specialCategories", "topPicks")
+                        }
                       />
-                      <Label htmlFor="special-topPicks" className="ml-2 text-sm text-gray-700 cursor-pointer">
+                      <Label
+                        htmlFor="special-topPicks"
+                        className="ml-2 text-sm text-gray-700 cursor-pointer"
+                      >
                         Top Picks
                       </Label>
                     </div>
-                    <span className="text-xs text-gray-500">({filterCounts.specialCategories.topPicks})</span>
+                    <span className="text-xs text-gray-500">
+                      ({filterCounts.specialCategories.topPicks})
+                    </span>
                   </div>
                 )}
               </div>
@@ -447,20 +569,29 @@ export default function Shop() {
         {/* Discount */}
         <div className="border-b pb-4">
           <button
-            onClick={() => toggleSection('discount')}
+            onClick={() => toggleSection("discount")}
             className="flex items-center justify-between w-full mb-3"
           >
             <h4 className="font-semibold text-gray-900">Discount</h4>
-            {expandedSections.discount ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
+            {expandedSections.discount ? (
+              <ChevronUp className="w-4 h-4" />
+            ) : (
+              <ChevronDown className="w-4 h-4" />
+            )}
           </button>
           {expandedSections.discount && (
             <div className="flex items-center">
               <Checkbox
                 id="hasDiscount"
                 checked={filters.hasDiscount}
-                onCheckedChange={(checked) => setFilters(prev => ({ ...prev, hasDiscount: checked }))}
+                onCheckedChange={(checked) =>
+                  setFilters((prev) => ({ ...prev, hasDiscount: checked }))
+                }
               />
-              <Label htmlFor="hasDiscount" className="ml-2 text-sm text-gray-700 cursor-pointer">
+              <Label
+                htmlFor="hasDiscount"
+                className="ml-2 text-sm text-gray-700 cursor-pointer"
+              >
                 Products with discount
               </Label>
             </div>
@@ -470,17 +601,23 @@ export default function Shop() {
         {/* Price Range */}
         <div className="border-b pb-4">
           <button
-            onClick={() => toggleSection('price')}
+            onClick={() => toggleSection("price")}
             className="flex items-center justify-between w-full mb-3"
           >
             <h4 className="font-semibold text-gray-900">Price</h4>
-            {expandedSections.price ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
+            {expandedSections.price ? (
+              <ChevronUp className="w-4 h-4" />
+            ) : (
+              <ChevronDown className="w-4 h-4" />
+            )}
           </button>
           {expandedSections.price && (
             <>
               <Slider
                 value={filters.priceRange}
-                onValueChange={(value) => setFilters(prev => ({ ...prev, priceRange: value }))}
+                onValueChange={(value) =>
+                  setFilters((prev) => ({ ...prev, priceRange: value }))
+                }
                 max={50000}
                 step={500}
                 className="mb-3"
@@ -489,9 +626,11 @@ export default function Shop() {
                 <span>₹{filters.priceRange[0]}</span>
                 <span>₹{filters.priceRange[1]}</span>
               </div>
-              {filters.priceRange[0] !== 0 || filters.priceRange[1] !== 50000 ? (
+              {filters.priceRange[0] !== 0 ||
+              filters.priceRange[1] !== 50000 ? (
                 <p className="text-xs text-gray-600 bg-gray-50 p-2 rounded">
-                  Showing products between ₹{filters.priceRange[0]} and ₹{filters.priceRange[1]} ({filteredProducts.length})
+                  Showing products between ₹{filters.priceRange[0]} and ₹
+                  {filters.priceRange[1]} ({filteredProducts.length})
                 </p>
               ) : null}
             </>
@@ -502,22 +641,29 @@ export default function Shop() {
         {Object.keys(filterCounts.colors).length > 0 && (
           <div className="border-b pb-4">
             <button
-              onClick={() => toggleSection('colors')}
+              onClick={() => toggleSection("colors")}
               className="flex items-center justify-between w-full mb-3"
             >
               <h4 className="font-semibold text-gray-900">Color</h4>
-              {expandedSections.colors ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
+              {expandedSections.colors ? (
+                <ChevronUp className="w-4 h-4" />
+              ) : (
+                <ChevronDown className="w-4 h-4" />
+              )}
             </button>
             {expandedSections.colors && (
               <>
                 <div className="space-y-2">
                   {displayedColors.map(([color, count]) => (
-                    <div key={color} className="flex items-center justify-between">
+                    <div
+                      key={color}
+                      className="flex items-center justify-between"
+                    >
                       <div className="flex items-center">
                         <Checkbox
                           id={`color-${color}`}
                           checked={filters.colors.includes(color)}
-                          onCheckedChange={() => toggleFilter('colors', color)}
+                          onCheckedChange={() => toggleFilter("colors", color)}
                         />
                         <Label
                           htmlFor={`color-${color}`}
@@ -537,7 +683,9 @@ export default function Shop() {
                     onClick={() => setShowAllColors(!showAllColors)}
                     className="mt-2 w-full text-xs"
                   >
-                    {showAllColors ? 'Show Less' : `More Colors (${colorEntries.length - 5})`}
+                    {showAllColors
+                      ? "Show Less"
+                      : `More Colors (${colorEntries.length - 5})`}
                   </Button>
                 )}
               </>
@@ -557,15 +705,24 @@ export default function Shop() {
         <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-8 gap-4">
           <div>
             <h1 className="text-3xl font-bold text-gray-900 mb-2">
-              {searchQuery ? `Search Results for "${searchQuery}"` : 'Shop All Products'}
+              {searchQuery
+                ? `Search Results for "${searchQuery}"`
+                : "Shop All Products"}
             </h1>
             <p className="text-gray-600">
-              {loading ? 'Loading...' : `${filteredProducts.length} products found`}
+              {loading
+                ? "Loading..."
+                : `${filteredProducts.length} products found`}
             </p>
           </div>
 
           <div className="flex items-center gap-3">
-            <Select value={filters?.sortBy} onValueChange={(value) => setFilters(prev => ({ ...prev, sortBy: value }))}>
+            <Select
+              value={filters?.sortBy}
+              onValueChange={(value) =>
+                setFilters((prev) => ({ ...prev, sortBy: value }))
+              }
+            >
               <SelectTrigger className="w-48">
                 <SlidersHorizontal className="w-4 h-4 mr-2" />
                 <span className="text-gray-900">
@@ -607,33 +764,64 @@ export default function Shop() {
         {activeFiltersCount > 0 && (
           <div className="mb-6 flex flex-wrap gap-2">
             <span className="text-sm text-gray-600">Active Filters:</span>
-            {filters.genders.map(g => (
-              <Badge key={g} variant="secondary" className="cursor-pointer" onClick={() => toggleFilter('genders', g)}>
+            {filters.genders.map((g) => (
+              <Badge
+                key={g}
+                variant="secondary"
+                className="cursor-pointer"
+                onClick={() => toggleFilter("genders", g)}
+              >
                 {g} <X className="w-3 h-3 ml-1" />
               </Badge>
             ))}
-            {filters.categories.map(c => (
-              <Badge key={c} variant="secondary" className="cursor-pointer" onClick={() => toggleFilter('categories', c)}>
+            {filters.categories.map((c) => (
+              <Badge
+                key={c}
+                variant="secondary"
+                className="cursor-pointer"
+                onClick={() => toggleFilter("categories", c)}
+              >
                 {c} <X className="w-3 h-3 ml-1" />
               </Badge>
             ))}
-            {filters.subCategories.map(s => (
-              <Badge key={s} variant="secondary" className="cursor-pointer" onClick={() => toggleFilter('subCategories', s)}>
+            {filters.subCategories.map((s) => (
+              <Badge
+                key={s}
+                variant="secondary"
+                className="cursor-pointer"
+                onClick={() => toggleFilter("subCategories", s)}
+              >
                 {s} <X className="w-3 h-3 ml-1" />
               </Badge>
             ))}
-            {filters.sizes.map(s => (
-              <Badge key={s} variant="secondary" className="cursor-pointer" onClick={() => toggleFilter('sizes', s)}>
+            {filters.sizes.map((s) => (
+              <Badge
+                key={s}
+                variant="secondary"
+                className="cursor-pointer"
+                onClick={() => toggleFilter("sizes", s)}
+              >
                 Size: {s} <X className="w-3 h-3 ml-1" />
               </Badge>
             ))}
-            {filters.colors.map(c => (
-              <Badge key={c} variant="secondary" className="cursor-pointer" onClick={() => toggleFilter('colors', c)}>
+            {filters.colors.map((c) => (
+              <Badge
+                key={c}
+                variant="secondary"
+                className="cursor-pointer"
+                onClick={() => toggleFilter("colors", c)}
+              >
                 {c} <X className="w-3 h-3 ml-1" />
               </Badge>
             ))}
             {filters.hasDiscount && (
-              <Badge variant="secondary" className="cursor-pointer" onClick={() => setFilters(prev => ({ ...prev, hasDiscount: false }))}>
+              <Badge
+                variant="secondary"
+                className="cursor-pointer"
+                onClick={() =>
+                  setFilters((prev) => ({ ...prev, hasDiscount: false }))
+                }
+              >
                 With Discount <X className="w-3 h-3 ml-1" />
               </Badge>
             )}
@@ -666,13 +854,15 @@ export default function Shop() {
                 <div className="w-20 h-20 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
                   <Filter className="w-10 h-10 text-gray-400" />
                 </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-2">No products found</h3>
+                <h3 className="text-xl font-semibold text-gray-900 mb-2">
+                  No products found
+                </h3>
                 <p className="text-gray-600 mb-6">Try adjusting your filters</p>
                 <Button onClick={clearFilters}>Clear Filters</Button>
               </div>
             ) : (
               <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
-                {filteredProducts.map(product => (
+                {filteredProducts.map((product) => (
                   <ProductCard key={product.id} product={product} />
                 ))}
               </div>

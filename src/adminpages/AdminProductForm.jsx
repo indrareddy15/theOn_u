@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { base44 } from "@/api/base44Client";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate, useLocation, useParams } from "react-router-dom";
 import { createPageUrl } from "@/utils";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -22,9 +22,11 @@ import { Skeleton } from "@/components/ui/skeleton";
 export default function AdminProductForm() {
     const navigate = useNavigate();
     const location = useLocation();
-    const urlParams = new URLSearchParams(location.search);
-    const productId = urlParams.get('id');
+    const { id: productId } = useParams();
     const isEditing = !!productId;
+
+    // Debug logging
+    console.log('ProductForm - Product ID:', productId, 'Is Editing:', isEditing);
 
     const [loading, setLoading] = useState(isEditing);
     const [saving, setSaving] = useState(false);
@@ -70,9 +72,9 @@ export default function AdminProductForm() {
                 navigate(createPageUrl('Home'));
                 return;
             }
-            loadCategories();
+            await loadCategories();
             if (isEditing) {
-                loadProduct();
+                await loadProduct();
             }
         } catch (error) {
             base44.auth.redirectToLogin(window.location.pathname);
@@ -83,6 +85,7 @@ export default function AdminProductForm() {
         try {
             const cats = await base44.entities.Category.list();
             setCategories(cats);
+            console.log('Loaded categories:', cats);
         } catch (error) {
             console.error('Error loading categories:', error);
         }
@@ -91,10 +94,11 @@ export default function AdminProductForm() {
     const loadProduct = async () => {
         try {
             setLoading(true);
-            const [product] = await base44.entities.Product.filter({ id: productId });
+            // Use the get method instead of filter for a specific ID
+            const product = await base44.entities.Product.get(parseInt(productId));
             if (product) {
                 setFormData({
-                    title: product.title || '',
+                    title: product.title || product.name || '',
                     description: product.description || '',
                     specification: product.specification || '',
                     material: product.material || '',
@@ -102,24 +106,29 @@ export default function AdminProductForm() {
                     gender: product.gender || 'unisex',
                     category: product.category || '',
                     sub_category: product.sub_category || '',
-                    price: product.price || '',
-                    sale_price: product.sale_price || '',
+                    price: product.price?.toString() || '',
+                    sale_price: product.sale_price?.toString() || '',
                     images: product.images || [],
                     colors: product.colors || [],
                     sizes: product.sizes || [],
                     tags: product.tags || [],
-                    sku: product.sku || '',
+                    sku: product.sku || product.product_id || '',
                     hsn: product.hsn || '',
                     gst: product.gst || 18,
-                    weight: product.weight || '',
+                    weight: product.weight?.toString() || '',
                     dimensions: product.dimensions || { length: '', width: '', height: '' },
                     is_featured: product.is_featured || false,
                     is_active: product.is_active !== false
                 });
+                console.log('Loaded product data:', product);
+            } else {
+                toast.error('Product not found');
+                navigate('/admin/products');
             }
         } catch (error) {
             console.error('Error loading product:', error);
             toast.error('Failed to load product');
+            navigate('/admin/products');
         } finally {
             setLoading(false);
         }
@@ -161,10 +170,17 @@ export default function AdminProductForm() {
     };
 
     const handleAddColor = () => {
-        if (!newColor.name.trim()) return;
+        console.log('handleAddColor called with:', newColor);
+        if (!newColor.name.trim()) {
+            console.log('Color name is empty, not adding');
+            return;
+        }
+        console.log('Adding color:', newColor);
+        const updatedColors = [...formData.colors, { ...newColor }];
+        console.log('Updated colors array:', updatedColors);
         setFormData(prev => ({
             ...prev,
-            colors: [...prev.colors, { ...newColor }]
+            colors: updatedColors
         }));
         setNewColor({ name: '', code: '#000000' });
     };
@@ -232,7 +248,7 @@ export default function AdminProductForm() {
             };
 
             if (isEditing) {
-                await base44.entities.Product.update(productId, productData);
+                await base44.entities.Product.update(parseInt(productId), productData);
                 toast.success('Product updated successfully');
             } else {
                 await base44.entities.Product.create(productData);
@@ -469,11 +485,12 @@ export default function AdminProductForm() {
                     </CardHeader>
                     <CardContent className="space-y-4">
                         <div className="flex flex-wrap gap-2">
+                            {console.log('Rendering colors:', formData.colors)}
                             {formData.colors.map((color, idx) => (
-                                <Badge key={idx} variant="secondary" className="px-3 py-2">
+                                <Badge key={idx} variant="secondary" className="px-3 py-2" style={{ backgroundColor: '#e5e7eb', color: 'black' }}>
                                     <div className="flex items-center gap-2">
                                         <div
-                                            className="w-4 h-4 rounded-full border"
+                                            className="w-4 h-4 rounded-full border border-gray-300"
                                             style={{ backgroundColor: color.code }}
                                         />
                                         <span>{color.name}</span>
@@ -494,6 +511,7 @@ export default function AdminProductForm() {
                                 placeholder="Color name"
                                 value={newColor.name}
                                 onChange={(e) => setNewColor({ ...newColor, name: e.target.value })}
+                                onKeyPress={(e) => e.key === 'Enter' && (e.preventDefault(), handleAddColor())}
                             />
                             <Input
                                 type="color"
@@ -501,7 +519,7 @@ export default function AdminProductForm() {
                                 onChange={(e) => setNewColor({ ...newColor, code: e.target.value })}
                                 className="w-20"
                             />
-                            <Button type="button" onClick={handleAddColor}>
+                            <Button type="button" onClick={(e) => { e.preventDefault(); handleAddColor(); }}>
                                 <Plus className="w-4 h-4" />
                             </Button>
                         </div>
@@ -597,7 +615,7 @@ export default function AdminProductForm() {
                             <Label>Tags</Label>
                             <div className="flex flex-wrap gap-2 mb-2">
                                 {formData.tags.map((tag, idx) => (
-                                    <Badge key={idx} variant="secondary">
+                                    <Badge key={idx} variant="secondary" style={{ backgroundColor: '#e5e7eb', color: 'black' }}>
                                         {tag}
                                         <button
                                             type="button"
