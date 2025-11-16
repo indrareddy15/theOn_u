@@ -67,7 +67,7 @@ export default function AdminSettings() {
 
     useEffect(() => {
         checkAuth();
-    }, []);
+    }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
     const checkAuth = async () => {
         try {
@@ -77,7 +77,7 @@ export default function AdminSettings() {
                 return;
             }
             loadData();
-        } catch (error) {
+        } catch {
             base44.auth.redirectToLogin(window.location.pathname);
         }
     };
@@ -118,7 +118,7 @@ export default function AdminSettings() {
             }
             setCategoryDialogOpen(false);
             resetCategoryForm();
-        } catch (error) {
+        } catch {
             toast.error('Failed to save category');
         }
     };
@@ -144,7 +144,7 @@ export default function AdminSettings() {
             setCategories(prev => prev.filter(c => c.id !== deleteDialog.item.id));
             toast.success('Category deleted');
             setDeleteDialog({ open: false, type: null, item: null });
-        } catch (error) {
+        } catch {
             toast.error('Failed to delete category');
         }
     };
@@ -189,7 +189,7 @@ export default function AdminSettings() {
             }
             setCouponDialogOpen(false);
             resetCouponForm();
-        } catch (error) {
+        } catch {
             toast.error('Failed to save coupon');
         }
     };
@@ -219,7 +219,7 @@ export default function AdminSettings() {
             setCoupons(prev => prev.filter(c => c.id !== deleteDialog.item.id));
             toast.success('Coupon deleted');
             setDeleteDialog({ open: false, type: null, item: null });
-        } catch (error) {
+        } catch {
             toast.error('Failed to delete coupon');
         }
     };
@@ -231,7 +231,7 @@ export default function AdminSettings() {
                 c.id === coupon.id ? { ...c, is_active: !c.is_active } : c
             ));
             toast.success(`Coupon ${!coupon.is_active ? 'activated' : 'deactivated'}`);
-        } catch (error) {
+        } catch {
             toast.error('Failed to update coupon status');
         }
     };
@@ -362,8 +362,14 @@ export default function AdminSettings() {
                                                 />
                                             </div>
                                             <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
-                                                <Label>Active Status</Label>
+                                                <div>
+                                                    <Label htmlFor="category-active">Active Status</Label>
+                                                    <p className="text-xs text-gray-500 mt-1">
+                                                        {categoryForm.is_active ? 'Category will be visible to customers' : 'Category will be hidden from customers'}
+                                                    </p>
+                                                </div>
                                                 <Switch
+                                                    id="category-active"
                                                     checked={categoryForm.is_active}
                                                     onCheckedChange={(checked) => setCategoryForm({ ...categoryForm, is_active: checked })}
                                                 />
@@ -381,44 +387,52 @@ export default function AdminSettings() {
                             <Table>
                                 <TableHeader>
                                     <TableRow>
-                                        <TableHead>Name</TableHead>
-                                        <TableHead>Slug</TableHead>
-                                        <TableHead>Order</TableHead>
-                                        <TableHead>Status</TableHead>
-                                        <TableHead className="text-right">Actions</TableHead>
+                                        <TableHead className="w-1/4">Name</TableHead>
+                                        <TableHead className="w-1/4">Slug</TableHead>
+                                        <TableHead className="w-1/6 text-center">Order</TableHead>
+                                        <TableHead className="w-1/6 text-center">Status</TableHead>
+                                        <TableHead className="w-1/6 text-center">Actions</TableHead>
                                     </TableRow>
                                 </TableHeader>
                                 <TableBody>
-                                    {categories.map(category => (
-                                        <TableRow key={category.id}>
-                                            <TableCell className="font-medium">{category.name}</TableCell>
-                                            <TableCell className="text-gray-600">{category.slug}</TableCell>
-                                            <TableCell>{category.display_order}</TableCell>
-                                            <TableCell>
-                                                <Badge variant={category.is_active ? 'default' : 'secondary'}>
-                                                    {category.is_active ? 'Active' : 'Inactive'}
-                                                </Badge>
-                                            </TableCell>
-                                            <TableCell className="text-right">
-                                                <div className="flex justify-end gap-2">
-                                                    <Button
-                                                        variant="ghost"
-                                                        size="icon"
-                                                        onClick={() => handleEditCategory(category)}
-                                                    >
-                                                        <Edit className="w-4 h-4" />
-                                                    </Button>
-                                                    <Button
-                                                        variant="ghost"
-                                                        size="icon"
-                                                        onClick={() => setDeleteDialog({ open: true, type: 'category', item: category })}
-                                                    >
-                                                        <Trash2 className="w-4 h-4 text-red-600" />
-                                                    </Button>
-                                                </div>
+                                    {categories.length === 0 ? (
+                                        <TableRow>
+                                            <TableCell colSpan={5} className="h-24 text-center text-gray-500 py-8">
+                                                No categories found. Create your first category to get started.
                                             </TableCell>
                                         </TableRow>
-                                    ))}
+                                    ) : (
+                                        categories.map(category => (
+                                            <TableRow key={category.id}>
+                                                <TableCell className="font-medium w-1/4">{category.name}</TableCell>
+                                                <TableCell className="text-gray-600 w-1/4">{category.slug}</TableCell>
+                                                <TableCell className="text-center w-1/6">{category.display_order}</TableCell>
+                                                <TableCell className="text-center w-1/6">
+                                                    <Badge variant={category.is_active ? 'default' : 'secondary'}>
+                                                        {category.is_active ? 'Active' : 'Inactive'}
+                                                    </Badge>
+                                                </TableCell>
+                                                <TableCell className="text-center w-1/6">
+                                                    <div className="flex justify-center gap-2">
+                                                        <Button
+                                                            variant="ghost"
+                                                            size="icon"
+                                                            onClick={() => handleEditCategory(category)}
+                                                        >
+                                                            <Edit className="w-4 h-4" />
+                                                        </Button>
+                                                        <Button
+                                                            variant="ghost"
+                                                            size="icon"
+                                                            onClick={() => setDeleteDialog({ open: true, type: 'category', item: category })}
+                                                        >
+                                                            <Trash2 className="w-4 h-4 text-red-600" />
+                                                        </Button>
+                                                    </div>
+                                                </TableCell>
+                                            </TableRow>
+                                        ))
+                                    )}
                                 </TableBody>
                             </Table>
                         </CardContent>
@@ -536,8 +550,14 @@ export default function AdminSettings() {
                                                 />
                                             </div>
                                             <div className="col-span-2 flex items-center justify-between p-3 bg-gray-50 rounded-lg">
-                                                <Label>Active Status</Label>
+                                                <div>
+                                                    <Label htmlFor="coupon-active">Active Status</Label>
+                                                    <p className="text-xs text-gray-500 mt-1">
+                                                        {couponForm.is_active ? 'Coupon will be available for use' : 'Coupon will be disabled'}
+                                                    </p>
+                                                </div>
                                                 <Switch
+                                                    id="coupon-active"
                                                     checked={couponForm.is_active}
                                                     onCheckedChange={(checked) => setCouponForm({ ...couponForm, is_active: checked })}
                                                 />

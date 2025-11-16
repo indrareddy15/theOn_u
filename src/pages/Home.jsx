@@ -43,52 +43,44 @@ export default function Home() {
 
   return (
     <div className="min-h-screen">
-      {/* Hero Section - Premium Enhanced */}
-      <section className="relative h-[600px] md:h-[800px] bg-gradient-to-br from-gray-50 via-gray-100 to-gray-50 overflow-hidden group">
-        {/* Enhanced Gradient Blobs with Better Animation */}
+      {/* Hero Section */}
+      <section className="relative h-[600px] md:h-[700px] bg-gradient-to-br from-gray-50 via-gray-100 to-gray-50 overflow-hidden">
         <div className="absolute inset-0">
-          <div className="absolute top-20 right-10 w-96 h-96 bg-purple-300 rounded-full mix-blend-multiply filter blur-3xl opacity-25 animate-blob"></div>
-          <div className="absolute bottom-20 left-10 w-96 h-96 bg-yellow-300 rounded-full mix-blend-multiply filter blur-3xl opacity-25 animate-blob animation-delay-2000"></div>
-          <div className="absolute top-40 left-1/2 w-96 h-96 bg-pink-300 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-4000"></div>
-          {/* Additional subtle overlay for depth */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/5 to-transparent"></div>
+          <div className="absolute top-20 right-10 w-72 h-72 bg-purple-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob"></div>
+          <div className="absolute bottom-20 left-10 w-72 h-72 bg-yellow-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-2000"></div>
+          <div className="absolute top-40 left-1/2 w-72 h-72 bg-pink-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-4000"></div>
         </div>
-
+        
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex items-center">
-          <div className="max-w-2xl animate-slideInLeft" style={{ animationDuration: '0.8s' }}>
-            {/* Premium Badge */}
-            <div className="inline-flex items-center gap-2 px-5 py-3 bg-white/90 backdrop-blur-md rounded-full mb-8 shadow-premium hover:shadow-premium-lg transition-all duration-300 border border-white/70 group/badge hover:scale-105">
-              <Sparkles className="w-5 h-5 text-yellow-500 animate-pulse-subtle" />
-              <span className="text-sm font-bold text-gray-800 bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent">New Season Collection</span>
+          <div className="max-w-2xl">
+            <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/80 backdrop-blur-sm rounded-full mb-6 shadow-sm">
+              <Sparkles className="w-4 h-4 text-yellow-500" />
+              <span className="text-sm font-medium text-gray-700">New Season Collection</span>
             </div>
-
-            {/* Enhanced Headline with Better Typography */}
-            <h1 className="text-6xl md:text-8xl font-black text-gray-900 mb-6 leading-tight tracking-tight animate-fadeInUp" style={{ animationDelay: '0.1s' }}>
-              Redefine Your
-              <span className="block bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 bg-clip-text text-transparent">
-                Everyday Style
+            
+            <h1 className="text-5xl md:text-7xl font-bold text-gray-900 mb-6 leading-tight">
+              Elevate Your
+              <span className="block bg-gradient-to-r from-gray-900 via-gray-700 to-gray-900 bg-clip-text text-transparent">
+                Style
               </span>
             </h1>
-
-            {/* Enhanced Subheading */}
-            <p className="text-lg md:text-2xl text-gray-700 mb-12 max-w-lg leading-relaxed font-semibold animate-fadeInUp" style={{ animationDelay: '0.2s' }}>
-              Discover premium fashion designed for modern living — curated for those who dress with purpose.
+            
+            <p className="text-xl text-gray-600 mb-8 max-w-lg">
+              Discover the latest trends in fashion. Premium quality clothing designed for the modern individual.
             </p>
-
-            {/* Enhanced CTA Buttons */}
-            <div className="flex flex-col sm:flex-row flex-wrap gap-4 animate-fadeInUp" style={{ animationDelay: '0.3s' }}>
-              <Button
-                size="lg"
-                className="bg-gradient-to-r from-gray-900 to-gray-800 hover:from-gray-800 hover:to-gray-700 text-white shadow-premium hover:shadow-premium-lg transition-all duration-300 group rounded-xl font-bold text-base px-8"
+            
+            <div className="flex flex-wrap gap-4">
+              <Button 
+                size="lg" 
+                className="bg-gray-900 hover:bg-gray-800 text-white shadow-lg hover:shadow-xl transition-all duration-300 group"
                 onClick={() => navigate(createPageUrl('Shop'))}
               >
-                <span>Shop Now</span>
-                <ArrowRight className="ml-3 w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
+                Shop Now
+                <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </Button>
-              <Button
-                size="lg"
+              <Button 
+                size="lg" 
                 variant="outline"
-                className="rounded-xl hover:bg-gray-100 border-2 border-gray-900 text-gray-900 font-bold transition-all duration-300 hover:shadow-premium px-8"
                 onClick={() => navigate(createPageUrl('Shop'))}
               >
                 Browse Collections
@@ -98,21 +90,15 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Categories - Enhanced */}
-      <section className="py-24 md:py-32 bg-white relative overflow-hidden">
-        {/* Subtle background decoration */}
-        <div className="absolute top-0 right-0 w-72 h-72 bg-gray-100/50 rounded-full blur-3xl -mr-32 -mt-32"></div>
-
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-          <div className="text-center mb-20 animate-fadeIn">
-            <div className="inline-block mb-4">
-              <span className="text-sm font-bold text-gray-600 uppercase tracking-widest">Collections</span>
-            </div>
-            <h2 className="text-4xl md:text-5xl font-black text-gray-900 mb-6 leading-tight">
-              Find Your Perfect Fit
+      {/* Categories */}
+      <section className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+              Shop by Category
             </h2>
-            <p className="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed font-medium">
-              Explore looks that speak your language.
+            <p className="text-gray-600 max-w-2xl mx-auto">
+              Explore our curated collections designed to match every style and occasion
             </p>
           </div>
           
@@ -128,37 +114,26 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Featured Products - Enhanced */}
-      <section className="py-24 md:py-32 bg-gradient-to-b from-gray-50 to-white relative overflow-hidden">
-        {/* Decorative elements */}
-        <div className="absolute bottom-0 left-0 w-96 h-96 bg-yellow-100/30 rounded-full blur-3xl -mb-48 -ml-32"></div>
-        <div className="absolute top-0 right-0 w-72 h-72 bg-purple-100/30 rounded-full blur-3xl -mr-32"></div>
-
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-          <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-20 gap-8 animate-fadeIn">
-            <div className="flex-1">
-              <div className="flex items-center gap-3 mb-4">
-                <div className="p-2 bg-yellow-100 rounded-lg">
-                  <Star className="w-5 h-5 text-yellow-600 fill-yellow-600" />
-                </div>
-                <span className="text-sm font-bold text-gray-600 uppercase tracking-widest">Handpicked</span>
+      {/* Featured Products */}
+      <section className="py-20 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-center mb-12">
+            <div>
+              <div className="flex items-center gap-2 mb-2">
+                <Star className="w-5 h-5 text-yellow-500 fill-yellow-500" />
+                <span className="text-sm font-medium text-gray-600">Handpicked for You</span>
               </div>
-              <div>
-                <h2 className="text-4xl md:text-5xl font-black text-gray-900 mb-4 leading-tight">
-                  Editor's Picks for You
-                </h2>
-                <p className="text-lg md:text-xl text-gray-600 max-w-3xl leading-relaxed font-medium">
-                  Elevate your wardrobe with this season's exclusive pieces.
-                </p>
-              </div>
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
+                Featured Products
+              </h2>
             </div>
-            <Button
+            <Button 
               variant="outline"
               onClick={() => navigate(createPageUrl('Shop'))}
-              className="hidden md:inline-flex whitespace-nowrap border-2 border-gray-900 text-gray-900 font-bold hover:shadow-premium transition-all duration-300 rounded-xl px-8"
+              className="hidden md:flex"
             >
               View All
-              <ArrowRight className="ml-2 w-5 h-5" />
+              <ArrowRight className="ml-2 w-4 h-4" />
             </Button>
           </div>
           
@@ -182,70 +157,56 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Customer Reviews - Enhanced */}
+      {/* Customer Reviews */}
       {customerReviews.length > 0 && (
-        <section className="py-24 md:py-32 bg-gradient-to-b from-white to-gray-50 relative overflow-hidden">
-          {/* Decorative elements */}
-          <div className="absolute top-1/2 left-1/4 w-80 h-80 bg-pink-100/30 rounded-full blur-3xl transform -translate-x-1/2 -translate-y-1/2"></div>
-
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-            <div className="text-center mb-20 animate-fadeIn">
-              <div className="flex items-center justify-center gap-3 mb-4">
-                <div className="p-2 bg-gray-200 rounded-lg">
-                  <Quote className="w-5 h-5 text-gray-700" />
-                </div>
-                <span className="text-sm font-bold text-gray-600 uppercase tracking-widest">Testimonials</span>
+        <section className="py-20 bg-white">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-12">
+              <div className="flex items-center justify-center gap-2 mb-2">
+                <Quote className="w-5 h-5 text-gray-600" />
+                <span className="text-sm font-medium text-gray-600">What Our Customers Say</span>
               </div>
-              <h2 className="text-4xl md:text-5xl font-black text-gray-900 mb-6 leading-tight">
-                Real Stories. Real Style.
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
+                Customer Reviews
               </h2>
-              <p className="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed font-medium">
-                Our community speaks for our quality and design.
-              </p>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {customerReviews.slice(0, 6).map((review, idx) => (
-                <Card
-                  key={review.id}
-                  className="hover:shadow-premium-lg transition-all duration-500 border-2 border-gray-200 bg-white hover:bg-gradient-to-br hover:from-white hover:to-gray-50 animate-fadeIn hover-scale-105 group"
-                  style={{ animationDelay: `${idx * 0.1}s` }}
-                >
-                  <CardContent className="pt-8 p-8">
-                    <div className="flex items-start justify-between mb-6">
-                      <div className="flex items-center gap-4">
-                        {review.customer_image ? (
-                          <img
-                            src={review.customer_image}
-                            alt={review.customer_name}
-                            className="w-14 h-14 rounded-full object-cover ring-3 ring-yellow-200 group-hover:ring-yellow-300 transition-all"
-                          />
-                        ) : (
-                          <div className="w-14 h-14 rounded-full bg-gradient-to-br from-gray-900 to-gray-700 flex items-center justify-center ring-3 ring-yellow-200 group-hover:ring-yellow-300 transition-all">
-                            <span className="text-white font-bold text-lg">
-                              {review.customer_name.charAt(0)}
-                            </span>
-                          </div>
-                        )}
-                        <div>
-                          <h4 className="font-bold text-gray-900 text-lg">{review.customer_name}</h4>
-                          {review.location && (
-                            <p className="text-sm text-gray-500 font-medium">{review.location}</p>
-                          )}
+              {customerReviews.slice(0, 6).map(review => (
+                <Card key={review.id} className="hover:shadow-lg transition-shadow">
+                  <CardContent className="pt-6">
+                    <div className="flex items-center gap-3 mb-4">
+                      {review.customer_image ? (
+                        <img 
+                          src={review.customer_image} 
+                          alt={review.customer_name}
+                          className="w-12 h-12 rounded-full object-cover"
+                        />
+                      ) : (
+                        <div className="w-12 h-12 rounded-full bg-gray-200 flex items-center justify-center">
+                          <span className="text-gray-600 font-semibold">
+                            {review.customer_name.charAt(0)}
+                          </span>
                         </div>
-                      </div>
-                      <div className="flex gap-1 bg-yellow-100 px-3 py-1 rounded-lg">
-                        {[...Array(5)].map((_, i) => (
-                          <Star
-                            key={i}
-                            className={`w-4 h-4 ${
-                              i < review.rating ? 'fill-yellow-500 text-yellow-500' : 'text-gray-300'
-                            }`}
-                          />
-                        ))}
+                      )}
+                      <div>
+                        <h4 className="font-semibold text-gray-900">{review.customer_name}</h4>
+                        {review.location && (
+                          <p className="text-xs text-gray-500">{review.location}</p>
+                        )}
                       </div>
                     </div>
-                    <p className="text-gray-700 text-base leading-relaxed font-medium italic">"{review.review_text}"</p>
+                    <div className="flex mb-3">
+                      {[...Array(5)].map((_, i) => (
+                        <Star
+                          key={i}
+                          className={`w-4 h-4 ${
+                            i < review.rating ? 'fill-yellow-400 text-yellow-400' : 'text-gray-300'
+                          }`}
+                        />
+                      ))}
+                    </div>
+                    <p className="text-gray-600 text-sm leading-relaxed">{review.review_text}</p>
                   </CardContent>
                 </Card>
               ))}
@@ -254,36 +215,26 @@ export default function Home() {
         </section>
       )}
 
-      {/* New Arrivals - Enhanced */}
-      <section className="py-24 md:py-32 bg-gradient-to-b from-white to-gray-50 relative overflow-hidden">
-        {/* Decorative elements */}
-        <div className="absolute top-1/4 right-0 w-96 h-96 bg-green-100/30 rounded-full blur-3xl -mr-48"></div>
-
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-          <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-20 gap-8 animate-fadeIn">
-            <div className="flex-1">
-              <div className="flex items-center gap-3 mb-4">
-                <div className="p-2 bg-green-100 rounded-lg">
-                  <TrendingUp className="w-5 h-5 text-green-600" />
-                </div>
-                <span className="text-sm font-bold text-gray-600 uppercase tracking-widest">New Releases</span>
+      {/* New Arrivals */}
+      <section className="py-20 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-center mb-12">
+            <div>
+              <div className="flex items-center gap-2 mb-2">
+                <TrendingUp className="w-5 h-5 text-green-500" />
+                <span className="text-sm font-medium text-gray-600">Fresh Off the Runway</span>
               </div>
-              <div>
-                <h2 className="text-4xl md:text-5xl font-black text-gray-900 mb-4 leading-tight">
-                  Just Dropped
-                </h2>
-                <p className="text-lg md:text-xl text-gray-600 max-w-3xl leading-relaxed font-medium">
-                  Be the first to wear what's next in fashion.
-                </p>
-              </div>
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
+                New Arrivals
+              </h2>
             </div>
-            <Button
+            <Button 
               variant="outline"
               onClick={() => navigate(createPageUrl('Shop'))}
-              className="hidden md:inline-flex whitespace-nowrap border-2 border-gray-900 text-gray-900 font-bold hover:shadow-premium transition-all duration-300 rounded-xl px-8"
+              className="hidden md:flex"
             >
               View All
-              <ArrowRight className="ml-2 w-5 h-5" />
+              <ArrowRight className="ml-2 w-4 h-4" />
             </Button>
           </div>
           
@@ -307,46 +258,23 @@ export default function Home() {
         </div>
       </section>
 
-      {/* CTA Section - Premium Enhanced */}
-      <section className="relative py-32 bg-gradient-to-br from-gray-900 via-gray-800 to-black overflow-hidden">
-        {/* Enhanced Background Elements */}
-        <div className="absolute inset-0">
-          <div className="absolute top-1/2 left-1/4 w-96 h-96 bg-yellow-400/20 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-float-up"></div>
-          <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-purple-500/20 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-float" style={{ animationDelay: '1s' }}></div>
-          <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
-        </div>
-
-        <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center animate-fadeInUp">
-          <div className="inline-block mb-6">
-            <span className="text-sm font-bold text-yellow-400 uppercase tracking-widest">Limited Time Offer</span>
-          </div>
-
-          <h2 className="text-5xl md:text-6xl font-black text-white mb-8 leading-tight">
-            Join the Style<br className="hidden md:block" /> Revolution
+      {/* CTA Section */}
+      <section className="py-20 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">
+            Join Our Fashion Community
           </h2>
-
-          <p className="text-xl md:text-2xl text-gray-200 mb-12 max-w-2xl mx-auto leading-relaxed font-semibold">
-            Sign up for early access and exclusive drops.
+          <p className="text-gray-300 text-lg mb-8 max-w-2xl mx-auto">
+            Get exclusive access to new collections, special offers, and style inspiration
           </p>
-
-          <div className="flex flex-col sm:flex-row justify-center gap-4">
-            <Button
-              size="lg"
-              className="bg-white text-gray-900 hover:bg-yellow-100 shadow-premium hover:shadow-premium-lg transition-all duration-300 rounded-xl group font-bold text-base px-10"
-              onClick={() => navigate(createPageUrl('Shop'))}
-            >
-              <span>Shop the Collection</span>
-              <ArrowRight className="ml-3 w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
-            </Button>
-            <Button
-              size="lg"
-              variant="outline"
-              className="border-2 border-white text-white hover:bg-white/10 font-bold transition-all duration-300 rounded-xl px-10"
-              onClick={() => navigate(createPageUrl('Shop'))}
-            >
-              Learn More
-            </Button>
-          </div>
+          <Button 
+            size="lg"
+            className="bg-white text-gray-900 hover:bg-gray-100"
+            onClick={() => navigate(createPageUrl('Shop'))}
+          >
+            Start Shopping
+            <ArrowRight className="ml-2 w-5 h-5" />
+          </Button>
         </div>
       </section>
 
